@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NeuralStemCell : MonoBehaviour
+public class NeuralStemCell : Cell
 {
     [Header("Spawn Settings")]
     [SerializeField] private GameObject radialGlialCellPrefab;
@@ -9,7 +9,7 @@ public class NeuralStemCell : MonoBehaviour
 
     private bool hasSpawned;
 
-    public void Activate()
+    public override void Click()
     {
         if (spawnOnce && hasSpawned) return;
 

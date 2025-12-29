@@ -26,7 +26,8 @@ public class ClickToActivate : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(mouse.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, clickableLayers))
         {
-            hit.collider.GetComponentInParent<NeuralStemCell>()?.Activate();
+            var clickable = hit.collider.GetComponentInParent<IClickable>();
+            clickable?.Click();
         }
     }
 }

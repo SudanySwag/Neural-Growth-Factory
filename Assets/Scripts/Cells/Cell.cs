@@ -1,0 +1,91 @@
+using System.Collections;
+using UnityEngine;
+
+public class Cell : MonoBehaviour, IClickable
+{
+    [Header("Division Timing")]
+    [SerializeField] private float prepTime = 0.25f;
+    [SerializeField] private float splitTime = 0.25f;
+    [SerializeField] private float settleTime = 0.15f;
+
+    [Header("Division Shape")]
+    [SerializeField] private float squashAmount = 0.20f;     // 0.2 = 20%
+    [SerializeField] private float separationDistance = 0.6f;
+
+    private bool busy;
+
+    virtual public void Click()
+    {
+        print("Cell clicked");
+    }
+
+    public void Divide(GameObject child)
+    {
+        if (busy) return;
+        StartCoroutine(DivideRoutine(child));
+    }
+
+    private IEnumerator DivideRoutine(GameObject child)
+    {
+        busy = true;
+
+        Vector3 baseScale = transform.localScale;
+        Vector3 axis = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+
+        // 1) Prep: squash and stretch (like pressure building)
+        Vector3 squashed = new Vector3(
+            baseScale.x * (1f - squashAmount),
+            baseScale.y * (1f + squashAmount),
+            baseScale.z
+        );
+
+        yield return TweenScale(baseScale, squashed, prepTime);
+
+        // 2) Spawn daughter at same position
+        GameObject daughter = Instantiate(child, transform.position, transform.rotation, transform.parent);
+        daughter.transform.localScale = squashed; // match squashed look initially
+
+        // 3) Split: separate both halves outward
+        Vector3 p0 = transform.position;
+        Vector3 pA = p0 - axis * (separationDistance * 0.5f);
+        Vector3 pB = p0 + axis * (separationDistance * 0.5f);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / Mathf.Max(0.0001f, splitTime);
+            float s = Smooth01(t);
+
+            transform.position = Vector3.Lerp(p0, pA, s);
+            daughter.transform.position = Vector3.Lerp(p0, pB, s);
+
+            yield return null;
+        }
+
+        // 4) Settle: both return to normal scale
+        StartCoroutine(TweenScale(squashed, baseScale, settleTime));
+        yield return TweenScale(squashed, baseScale, settleTime, daughter.transform);
+
+        busy = false;
+    }
+
+    private IEnumerator TweenScale(Vector3 from, Vector3 to, float duration, Transform target = null)
+    {
+        Transform tr = target ? target : transform;
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / Mathf.Max(0.0001f, duration);
+            float s = Smooth01(t);
+            tr.localScale = Vector3.Lerp(from, to, s);
+            yield return null;
+        }
+        tr.localScale = to;
+    }
+
+    private static float Smooth01(float x)
+    {
+        x = Mathf.Clamp01(x);
+        return x * x * (3f - 2f * x); // smoothstep
+    }
+}
