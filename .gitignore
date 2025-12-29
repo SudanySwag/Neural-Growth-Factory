@@ -1,0 +1,12 @@
+build/
+Build/
+Library/
+library/
+obj/
+Obj/
+Logs/
+logs/
+UserSettings/
+temp/
+Temp/
+*.sln
