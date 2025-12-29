@@ -16,7 +16,7 @@ public class Cell : MonoBehaviour, IClickable
 
     virtual public void Click()
     {
-        print("Cell clicked");
+        print($"{this.GetType().FullName} clicked");
     }
 
     public void Divide(GameObject child)
@@ -44,6 +44,11 @@ public class Cell : MonoBehaviour, IClickable
         // 2) Spawn daughter at same position
         GameObject daughter = Instantiate(child, transform.position, transform.rotation, transform.parent);
         daughter.transform.localScale = squashed; // match squashed look initially
+        if (daughter.name.EndsWith("Prefab(Clone)"))
+            daughter.name = daughter.name.Substring(0, daughter.name.Length - 13);
+        daughter.name = char.ToUpper(daughter.name[0]) + daughter.name.Substring(1);
+
+        // daughter.transform.SetParent(ObjectManager.GetObjectAtPath("World/Cells/" + daughter.name + "s"), true);
 
         // 3) Split: separate both halves outward
         Vector3 p0 = transform.position;

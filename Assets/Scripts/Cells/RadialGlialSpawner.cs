@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RadialGlialSpawner : Cell
+public class RadialGlialCell : Cell
 {
     [SerializeField] private RingManager ring;
     [SerializeField] private GameObject neuronPrefab;
@@ -22,6 +22,7 @@ public class RadialGlialSpawner : Cell
 
     public override void Click()
     {
+        base.Click();
         if (spawnOnClick) SpawnNeuron();
     }
 }
