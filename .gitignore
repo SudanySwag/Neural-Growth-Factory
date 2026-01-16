@@ -102,3 +102,6 @@ InitTestScene*.unity*
 /[Aa]ssets/_[Rr]ecovery*
 
 *.csproj
+
+/Assets/TextMesh Pro/Examples & Extras/
+/Assets/TextMesh Pro/Examples & Extras.meta
