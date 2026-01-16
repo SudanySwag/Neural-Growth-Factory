@@ -7,7 +7,11 @@ public class NeuralStemCell : Cell
     [SerializeField] private Vector3 spawnOffset = new Vector3(1f, 0f, 0f);
     [SerializeField] private bool spawnOnce = true;
 
-    private bool hasSpawned;
+    void Start()
+    {
+        cellType = CellType.NSC;
+        CellManager.Instance.RegisterCell(cellType);
+    }
 
     public override void Click()
     {

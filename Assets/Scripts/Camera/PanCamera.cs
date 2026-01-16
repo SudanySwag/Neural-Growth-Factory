@@ -78,7 +78,7 @@ public class PanCamera : MonoBehaviour
         if (scrollY == 0f) return;
 
         // Normalize the wheel a bit (feel free to tweak divisor)
-        float scroll = scrollY / 120f;
+        float scroll = scrollY / 20f;
 
         cam.orthographicSize = Mathf.Clamp(
             cam.orthographicSize - scroll * zoomSpeed,

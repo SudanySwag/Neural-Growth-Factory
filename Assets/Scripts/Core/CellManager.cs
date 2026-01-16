@@ -3,31 +3,93 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CellType
+    {
+        TPC,
+        NSC,
+        RGC,
+        NB,
+        N
+    }
+
 public class CellManager : MonoBehaviour
 {
-    [Header("Prefabs Container")]
-    [SerializeField] private GameObject prefabContainer;
+    
 
     public static CellManager Instance { get; private set; }
+    private Dictionary<CellType, GameObject> prefabs = new Dictionary<CellType, GameObject>();
+    private Dictionary<CellType, int> counts = ((CellType[])System.Enum.GetValues(typeof(CellType)))
+    .ToDictionary(ct => ct, ct => 0);
+        [System.Serializable]
+    public class CellCountEntry
+    {
+        public CellType cellType;
+        public int count;
+    }
 
-    [Serializable]
-    public struct Entry {public string className; public GameObject prefab;}
+    [SerializeField]
+    private List<CellCountEntry> countsDisplay = new List<CellCountEntry>();
 
-    private Dictionary<Type, GameObject> map;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Awake()
     {
-        foreach (var cell in prefabContainer.GetComponentsInChildren<Cell>())
+        // Singleton pattern
+        if (Instance == null)
         {
-            // Create a empty game object with cell name in World/Cells/
-            GameObject cellInstance = new GameObject(cell.name + "s");
-            cellInstance.transform.SetParent(ObjectManager.GetObjectAtPath("World/Cells").transform, true);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // Initialize counts display
+        foreach (CellType ct in Enum.GetValues(typeof(CellType)))   countsDisplay.Add(new CellCountEntry { cellType = ct, count = 0 });
+
+        
+        // Load prefabs from Resources folder
+        GameObject tpcPrefab = Resources.Load<GameObject>("Cells/totipotentStemCell");
+        GameObject nscPrefab = Resources.Load<GameObject>("Cells/neuralStemCell");
+        GameObject rgcPrefab = Resources.Load<GameObject>("Cells/radialGlialCell");
+        GameObject nbPrefab = Resources.Load<GameObject>("Cells/neuroblast");
+        GameObject nPrefab = Resources.Load<GameObject>("Cells/neuron");
+        
+        prefabs[CellType.TPC] = tpcPrefab;
+        prefabs[CellType.NSC] = nscPrefab;
+        prefabs[CellType.RGC] = rgcPrefab;
+        prefabs[CellType.NB] = nbPrefab;
+        prefabs[CellType.N] = nPrefab;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void RegisterCell(CellType cellType)
+    {
+        counts[cellType]++;
+        UpdateDisplayCount(cellType);
+    }
+
+    public void UnregisterCell(CellType cellType)
+    {
+        if (counts[cellType] > 0)
+        {
+            counts[cellType]--;
+            UpdateDisplayCount(cellType);
+        }
+    }
+
+    private void UpdateDisplayCount(CellType cellType)
+    {
+        var entry = countsDisplay.Find(e => e.cellType == cellType);
+        if (entry != null)
+        {
+            entry.count = counts[cellType];
+        }
     }
 }

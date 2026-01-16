@@ -13,6 +13,7 @@ public class Cell : MonoBehaviour, IClickable
     [SerializeField] private float separationDistance = 0.6f;
 
     private bool busy;
+    [SerializeField] protected CellType cellType;
 
     void Start()
     {
@@ -45,11 +46,13 @@ public class Cell : MonoBehaviour, IClickable
         yield return TweenScale(baseScale, squashed, prepTime * 1.5f);
 
         // 3) Replace with daughter
+        GetComponent<SphereCollider>().enabled = false;
+
         GameObject daughter = Instantiate(child, transform.position, transform.rotation, transform.parent);
         daughter.transform.localScale = squashed; // match squashed look initially
         yield return TweenScale(squashed, targetScale, settleTime, daughter.transform);
         busy = false;
-        Destroy(this.gameObject); 
+        Apoptosis();
     }
 
     public void Divide(GameObject child)
@@ -125,5 +128,11 @@ public class Cell : MonoBehaviour, IClickable
     {
         x = Mathf.Clamp01(x);
         return x * x * (3f - 2f * x); // smoothstep
+    }
+
+    private void Apoptosis()
+    {
+        CellManager.Instance.UnregisterCell(cellType);
+        Destroy(gameObject);
     }
 }

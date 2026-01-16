@@ -9,6 +9,11 @@ public class RadialGlialCell : Cell
     [SerializeField] private bool spawnOnClick = true;
     [SerializeField] private int cellsCountForGrowth = 1; // how many "cells" each neuron adds for radius
 
+    void Start()
+    {
+        cellType = CellType.RGC;
+        CellManager.Instance.RegisterCell(cellType);
+    }
     public void SpawnNeuron()
     {
         if (!ring || !neuronPrefab) return;
