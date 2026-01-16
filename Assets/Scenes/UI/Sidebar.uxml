@@ -1,13 +1,14 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Scenes/UI/sidebar.uss?fileID=7433441132597879392&amp;guid=50d5265437fb4ac4b958c5921e98988d&amp;type=3#sidebar" />
-    <ui:VisualElement name="sidebar" style="flex-grow: 1; align-self: flex-start; width: 20%; padding-top: 3px; padding-right: 3px; padding-bottom: 3px; padding-left: 3px; background-color: rgba(0, 152, 253, 0.25);">
-        <ui:Button text="Neurosphere" name="Neurosphere" class="sidebarButton" />
-        <ui:Button text="Lineage" name="Lineage" class="sidebarButton" />
-        <ui:Button text="Specimens" name="Specimens" class="sidebarButton" />
-        <ui:Button text="Motors" name="Motor" class="sidebarButton" />
-        <ui:Button text="Circuitry" name="Circuitry" class="sidebarButton" />
-        <ui:Button text="Synapses" name="Synapses" class="sidebarButton" />
-        <ui:Button text="Stats" name="Stats" class="sidebarButton" />
-        <ui:Button text="Settings" name="Settings" class="sidebarButton" />
+    <ui:VisualElement name="sidebar" style="width: 12%; background-color: rgba(0, 0, 0, 0); height: 100%;">
+        <ui:RadioButtonGroup name="RadioButtonGroup" style="height: 100%;">
+            <ui:RadioButton name="Neurosphere" class="sidebarButton" />
+            <ui:RadioButton name="Specimens" class="sidebarButton" style="transition-delay: 0.1s;" />
+            <ui:RadioButton name="Motors" class="sidebarButton" style="transition-delay: 0.2s; transition-timing-function: ease-in-out-circ;" />
+            <ui:RadioButton name="Circuitry" class="sidebarButton" style="transition-delay: 0.3s;" />
+            <ui:RadioButton name="Synapses" class="sidebarButton" style="transition-delay: 0.4s;" />
+            <ui:RadioButton name="Stats" class="sidebarButton" style="transition-delay: 0.5s;" />
+            <ui:RadioButton name="Settings" class="sidebarButton" style="transition-delay: 0.6s;" />
+        </ui:RadioButtonGroup>
     </ui:VisualElement>
 </ui:UXML>

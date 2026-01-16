@@ -2,22 +2,52 @@
 }
 
 .sidebarButton {
-    background-color: rgb(63, 113, 253);
-    -unity-font-definition: url("project://database/Assets/Fonts/Bangle-Normal.ttf?fileID=12800000&guid=d54fe27f7341c054baa440ddf5a41d89&type=3#Bangle-Normal");
-    -unity-font-style: bold;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    text-shadow: 0 0 0 rgb(255, 255, 255);
-    height: 8%;
-    font-size: 200%;
+    align-self: center;
+    flex-basis: 0%;
+    flex-grow: 1;
+    transition-property: translate;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out-circ;
+    translate: -100% 0%;
+    width: 100%;
+}
+
+#sidebar > #RadioButtonGroup > .unity-base-field__input {
+    height: 100%;
+}
+
+#sidebar > #RadioButtonGroup > .unity-base-field__input > #contentContainer {
+    height: 100%;
+}
+
+#sidebar:hover .sidebarButton {
+    translate: 0% 0%;
+}
+
+#sidebar #RadioButtonGroup .unity-radio-button .unity-radio-button__input {
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#sidebar #RadioButtonGroup .unity-radio-button__input .unity-radio-button__checkmark-background {
+    border-top-left-radius: 55px;
+    border-top-right-radius: 55px;
+    border-bottom-right-radius: 55px;
+    border-bottom-left-radius: 55px;
+    scale: 5 5;
+    background-color: rgb(74, 181, 248);
+    border-left-color: rgba(255, 255, 255, 0.41);
+    border-right-color: rgba(255, 255, 255, 0.41);
+    border-top-color: rgba(255, 255, 255, 0.41);
+    border-bottom-color: rgba(255, 255, 255, 0.41);
+}
+
+#sidebar #RadioButtonGroup .unity-radio-button__input .unity-radio-button__checkmark-background #unity-checkmark {
+    background-color: rgba(0, 0, 0, 0.38);
+}
+
+.unity-radio-button:selected {
+    translate: 0% 0%;
 }
