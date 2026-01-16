@@ -7,6 +7,11 @@ public class TotipotentStemCell : Cell
 
     private bool hasSpawned;
 
+    void Start()
+    {
+        cellType = CellType.TPC;
+        CellManager.Instance.RegisterCell(cellType);
+    }
     public override void Click()
     {
         base.Click();
