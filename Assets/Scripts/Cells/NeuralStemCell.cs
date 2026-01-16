@@ -12,7 +12,6 @@ public class NeuralStemCell : Cell
     public override void Click()
     {
         base.Click();
-        if (spawnOnce && hasSpawned) return;
 
         if (!radialGlialCellPrefab)
         {
@@ -20,10 +19,6 @@ public class NeuralStemCell : Cell
             return;
         }
 
-        Instantiate(radialGlialCellPrefab, transform.position + spawnOffset, transform.rotation).name = "RadialGlialCell";
-        hasSpawned = true;
-
-        if (spawnOnce)
-            Destroy(gameObject);
+        Divide(radialGlialCellPrefab);
     }
 }

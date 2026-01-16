@@ -14,9 +14,42 @@ public class Cell : MonoBehaviour, IClickable
 
     private bool busy;
 
+    void Start()
+    {
+        busy = false;
+    }
+
     virtual public void Click()
     {
         print($"{this.GetType().FullName} clicked");
+    }
+
+    public void Differentiate(GameObject newForm)
+    {
+        if (busy) return;
+        StartCoroutine(DifferentiateRoutine(newForm));
+    }
+
+    private IEnumerator DifferentiateRoutine(GameObject child)
+    {
+        if (!child) yield break;
+        busy = true;
+
+        Vector3 baseScale = transform.localScale;
+        Vector3 targetScale = child.transform.localScale;
+
+        // 1) Prep: set initial squash
+        Vector3 squashed = new Vector3(0, 0, 0);
+
+        // 2) Squash
+        yield return TweenScale(baseScale, squashed, prepTime * 1.5f);
+
+        // 3) Replace with daughter
+        GameObject daughter = Instantiate(child, transform.position, transform.rotation, transform.parent);
+        daughter.transform.localScale = squashed; // match squashed look initially
+        yield return TweenScale(squashed, targetScale, settleTime, daughter.transform);
+        busy = false;
+        Destroy(this.gameObject); 
     }
 
     public void Divide(GameObject child)
@@ -68,8 +101,8 @@ public class Cell : MonoBehaviour, IClickable
         }
 
         // 4) Settle: both return to normal scale
-        StartCoroutine(TweenScale(squashed, baseScale, settleTime));
-        yield return TweenScale(squashed, baseScale, settleTime, daughter.transform);
+        StartCoroutine(TweenScale(squashed, baseScale, settleTime, daughter.transform));
+        yield return TweenScale(squashed, baseScale, settleTime);
 
         busy = false;
     }

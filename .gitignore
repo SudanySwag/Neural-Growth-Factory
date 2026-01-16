@@ -100,3 +100,5 @@ InitTestScene*.unity*
 
 # Recovery Files
 /[Aa]ssets/_[Rr]ecovery*
+
+*.csproj
