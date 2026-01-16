@@ -157,4 +157,5 @@ MonoBehaviour:
   settleTime: 0.15
   squashAmount: 0.2
   separationDistance: 0.6
+  cellType: 0
   neuralStemCellPrefab: {fileID: 6275607954566489861, guid: 5c4159dee07870b45985f276468aa8cd, type: 3}

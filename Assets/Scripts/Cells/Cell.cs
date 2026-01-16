@@ -46,6 +46,8 @@ public class Cell : MonoBehaviour, IClickable
         yield return TweenScale(baseScale, squashed, prepTime * 1.5f);
 
         // 3) Replace with daughter
+        GetComponent<SphereCollider>().enabled = false;
+
         GameObject daughter = Instantiate(child, transform.position, transform.rotation, transform.parent);
         daughter.transform.localScale = squashed; // match squashed look initially
         yield return TweenScale(squashed, targetScale, settleTime, daughter.transform);
