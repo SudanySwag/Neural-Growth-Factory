@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Scenes/UI/upgrades.uss?fileID=7433441132597879392&amp;guid=f0aa6e45b1c19d641aeb6ff8ee0a7f9e&amp;type=3#upgrades" />
     <ui:RadioButtonGroup name="RadioButtonGroup" value="0" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 100%;">
-        <ui:RadioButton name="Off" />
+        <ui:RadioButton name="Off" style="width: 47%;" />
         <ui:VisualElement name="evolutionHolder" class="buttonPanel" style="flex-grow: 1;">
             <ui:RadioButton name="evolutionButton" class="upgradeButton" />
             <ui:VisualElement name="evolutionPanel" class="upgradePanel" />

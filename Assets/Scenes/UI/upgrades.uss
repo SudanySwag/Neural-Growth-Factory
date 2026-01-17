@@ -7,7 +7,7 @@
 
 .buttonPanel {
     flex-direction: row;
-    width: 56%;
+    width: 53%;
     align-self: flex-end;
 }
 
@@ -16,13 +16,13 @@
     width: 12%;
     height: 12%;
     margin-left: 88%;
+    transition-property: margin-left;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out-sine;
 }
 
 .upgradeButton:selected {
     margin-left: 0%;
-    transition-property: margin-left;
-    transition-duration: 1s;
-    transition-timing-function: ease-out-elastic;
 }
 
 .upgradePanel {
