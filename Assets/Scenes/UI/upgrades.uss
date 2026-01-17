@@ -1,0 +1,52 @@
+:root {
+}
+
+#RadioButtonGroup > .unity-base-field__input > #contentContainer {
+    height: 100%;
+}
+
+.buttonPanel {
+    flex-direction: row;
+    width: 56%;
+    align-self: flex-end;
+}
+
+.upgradeButton {
+    align-self: center;
+    width: 12%;
+    height: 12%;
+    margin-left: 88%;
+}
+
+.upgradeButton:selected {
+    margin-left: 0%;
+    transition-property: margin-left;
+    transition-duration: 1s;
+    transition-timing-function: ease-out-elastic;
+}
+
+.upgradePanel {
+    background-color: rgba(0, 0, 0, 0.78);
+    flex-grow: 1;
+}
+
+#RadioButtonGroup > #Off {
+    translate: 0% 0;
+    position: absolute;
+    height: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    width: 44%;
+    opacity: 0;
+}
+
+#RadioButtonGroup > #Off:selected {
+    translate: -100% 0;
+}
+
+#RadioButtonGroup > .buttonPanel > .upgradeButton > .unity-radio-button__input {
+    justify-content: center;
+    scale: 5 5;
+}
