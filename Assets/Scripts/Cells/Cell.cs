@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Cell : MonoBehaviour, IClickable
+public abstract class Cell : MonoBehaviour, IClickable
 {
     [Header("Division Timing")]
     [SerializeField] private float prepTime = 0.25f;
@@ -12,10 +12,17 @@ public class Cell : MonoBehaviour, IClickable
     [SerializeField] private float squashAmount = 0.20f;     // 0.2 = 20%
     [SerializeField] private float separationDistance = 0.6f;
 
-    private bool busy;
-    [SerializeField] protected CellType cellType;
+    protected bool busy = true;
+    protected abstract CellType cellType { get; }
+    private WaitForSeconds waitForSeconds;
 
     void Start()
+    {
+        CellManager.Instance.RegisterCell(cellType);
+        Invoke(nameof(freeCell), 1f);
+    }
+
+    public void freeCell()
     {
         busy = false;
     }

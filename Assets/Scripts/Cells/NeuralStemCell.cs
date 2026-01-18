@@ -3,26 +3,14 @@ using UnityEngine;
 public class NeuralStemCell : Cell
 {
     [Header("Spawn Settings")]
-    [SerializeField] private GameObject radialGlialCellPrefab;
     [SerializeField] private Vector3 spawnOffset = new Vector3(1f, 0f, 0f);
-    [SerializeField] private bool spawnOnce = true;
+    protected override CellType cellType => CellType.NSC;
 
-    void Start()
-    {
-        cellType = CellType.NSC;
-        CellManager.Instance.RegisterCell(cellType);
-    }
 
     public override void Click()
     {
         base.Click();
 
-        if (!radialGlialCellPrefab)
-        {
-            Debug.LogError("NeuralStemCell: radialGlialCellPrefab is not assigned.", this);
-            return;
-        }
-
-        Divide(radialGlialCellPrefab);
+        Divide(CellManager.Instance.GetPrefab(CellType.GMC));
     }
 }

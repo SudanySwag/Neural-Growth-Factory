@@ -7,6 +7,7 @@ public enum CellType
     {
         TPC,
         NSC,
+        GMC,
         RGC,
         NB,
         N
@@ -52,12 +53,14 @@ public class CellManager : MonoBehaviour
         // Load prefabs from Resources folder
         GameObject tpcPrefab = Resources.Load<GameObject>("Cells/totipotentStemCell");
         GameObject nscPrefab = Resources.Load<GameObject>("Cells/neuralStemCell");
+        GameObject gmcPrefab = Resources.Load<GameObject>("Cells/ganglionMotherCell");
         GameObject rgcPrefab = Resources.Load<GameObject>("Cells/radialGlialCell");
         GameObject nbPrefab = Resources.Load<GameObject>("Cells/neuroblast");
         GameObject nPrefab = Resources.Load<GameObject>("Cells/neuron");
         
         prefabs[CellType.TPC] = tpcPrefab;
         prefabs[CellType.NSC] = nscPrefab;
+        prefabs[CellType.GMC] = gmcPrefab;
         prefabs[CellType.RGC] = rgcPrefab;
         prefabs[CellType.NB] = nbPrefab;
         prefabs[CellType.N] = nPrefab;
@@ -67,6 +70,19 @@ public class CellManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public GameObject GetPrefab(CellType cellType)
+    {
+        if (prefabs.TryGetValue(cellType, out GameObject prefab))
+        {
+            return prefab;
+        }
+        else
+        {
+            Debug.LogError($"CellManager: No prefab found for CellType {cellType}");
+            return null;
+        }
     }
 
     public void RegisterCell(CellType cellType)

@@ -148,6 +148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1432870389}
   - {fileID: 1429027712}
   - {fileID: 1106246230}
   - {fileID: 1368530750}
@@ -876,7 +877,7 @@ GameObject:
   - component: {fileID: 1432870389}
   - component: {fileID: 1432870388}
   m_Layer: 5
-  m_Name: Sidebar
+  m_Name: Upgrades
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: 6767c73af0bd7154187af3b6cc517919, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: e54b9422267c5604bbeee7a5b69b51db, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 030c4d85be0861c4da5b8410b5370a1d, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
@@ -918,7 +919,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 180638868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -928,4 +929,3 @@ SceneRoots:
   - {fileID: 1310619852}
   - {fileID: 832575519}
   - {fileID: 180638868}
-  - {fileID: 1432870389}
