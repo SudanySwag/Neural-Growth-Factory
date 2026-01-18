@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RadialGlialCell : Cell
 {
-    protected override CellType cellType => CellType.RGC;
+    public override CellType cellType => CellType.RGC;
 
     public override void Click()
     {

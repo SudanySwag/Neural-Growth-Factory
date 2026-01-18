@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +29,7 @@ public class CellManager : MonoBehaviour
 
     [SerializeField]
     private List<CellCountEntry> countsDisplay = new List<CellCountEntry>();
+    private Dictionary<CellType, List<Cell>> cells = new Dictionary<CellType, List<Cell>>();
 
 
     void Awake()
@@ -47,7 +47,11 @@ public class CellManager : MonoBehaviour
         }
 
         // Initialize counts display
-        foreach (CellType ct in Enum.GetValues(typeof(CellType)))   countsDisplay.Add(new CellCountEntry { cellType = ct, count = 0 });
+        foreach (CellType ct in System.Enum.GetValues(typeof(CellType)))  {
+            countsDisplay.Add(new CellCountEntry { cellType = ct, count = 0 });
+            cells[ct] = new List<Cell>();
+        }
+
 
         
         // Load prefabs from Resources folder
@@ -85,19 +89,24 @@ public class CellManager : MonoBehaviour
         }
     }
 
-    public void RegisterCell(CellType cellType)
+    public void RegisterCell(Cell cellInstance)
     {
-        counts[cellType]++;
-        UpdateDisplayCount(cellType);
+        counts[cellInstance.cellType]++;
+        cells[cellInstance.cellType].Add(cellInstance);
+        
+        UpdateDisplayCount(cellInstance.cellType);
     }
 
-    public void UnregisterCell(CellType cellType)
+    public void UnregisterCell(Cell cellInstance)
     {
-        if (counts[cellType] > 0)
+        counts[cellInstance.cellType]--;
+        // Remove cell instance from tracking list
+        if (cells.ContainsKey(cellInstance.cellType))
         {
-            counts[cellType]--;
-            UpdateDisplayCount(cellType);
+            cells[cellInstance.cellType].Remove(cellInstance);
         }
+
+        UpdateDisplayCount(cellInstance.cellType);
     }
 
     private void UpdateDisplayCount(CellType cellType)
@@ -105,7 +114,36 @@ public class CellManager : MonoBehaviour
         var entry = countsDisplay.Find(e => e.cellType == cellType);
         if (entry != null)
         {
-            entry.count = counts[cellType];
+            entry.count = cells[cellType].Count;
+        }
+    }
+
+    public int getCellCount(CellType cellType)
+    {
+        return cells[cellType].Count;
+    }
+
+    public void KillCells(CellType ct, int count)
+    {
+        if (!cells.ContainsKey(ct) || cells[ct].Count == 0)
+        {
+            Debug.LogWarning($"CellManager: No cells of type {ct} available to kill.");
+            return;
+        }
+        
+        int cellsToKill = Mathf.Min(count, cells[ct].Count);
+        
+        if (cellsToKill < count)
+        {
+            Debug.LogWarning($"CellManager: Attempted to kill {count} cells of type {ct}, but only {cellsToKill} are available.");
+        }
+        
+        for (int i = 0; i < cellsToKill; i++)
+        {
+            int index = Random.Range(0, cells[ct].Count);
+            Cell cell = cells[ct][index];
+            cells[ct].RemoveAt(index);
+            Destroy(cell.gameObject);
         }
     }
 }

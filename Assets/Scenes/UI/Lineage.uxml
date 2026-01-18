@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:TreeView />
+    <ui:Button text="5 Neurons For MGC" name="mgc-test" style="align-self: center; top: auto; bottom: 50%;" />
+</ui:UXML>

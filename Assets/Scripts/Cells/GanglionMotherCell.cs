@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class GanglionMotherCell : Cell
 {
-    protected override CellType cellType => CellType.GMC;
+    public override CellType cellType => CellType.GMC;
     [SerializeField] private short gmcCount = 1;
-    public override void Click()
-    {
-        base.Click();
+
+    void Start() {
+        busy = true;
+        CellManager.Instance.RegisterCell(this);
+        Invoke(nameof(freeCell), 1f);
     }
 
     void Update()

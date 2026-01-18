@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TotipotentStemCell : Cell
 {
-    protected override CellType cellType => CellType.TPC;
+    public override CellType cellType => CellType.TPC;
 
     public override void Click()
     {

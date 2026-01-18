@@ -12,14 +12,12 @@ public abstract class Cell : MonoBehaviour, IClickable
     [SerializeField] private float squashAmount = 0.20f;     // 0.2 = 20%
     [SerializeField] private float separationDistance = 0.6f;
 
-    protected bool busy = true;
-    protected abstract CellType cellType { get; }
-    private WaitForSeconds waitForSeconds;
+    protected bool busy = false;
+    public abstract CellType cellType { get; }
 
     void Start()
     {
-        CellManager.Instance.RegisterCell(cellType);
-        Invoke(nameof(freeCell), 1f);
+        CellManager.Instance.RegisterCell(this);
     }
 
     public void freeCell()
@@ -59,7 +57,7 @@ public abstract class Cell : MonoBehaviour, IClickable
         daughter.transform.localScale = squashed; // match squashed look initially
         yield return TweenScale(squashed, targetScale, settleTime, daughter.transform);
         busy = false;
-        Apoptosis();
+        Destroy(gameObject);
     }
 
     public void Divide(GameObject child)
@@ -137,9 +135,8 @@ public abstract class Cell : MonoBehaviour, IClickable
         return x * x * (3f - 2f * x); // smoothstep
     }
 
-    private void Apoptosis()
+    void onDestroy()
     {
-        CellManager.Instance.UnregisterCell(cellType);
-        Destroy(gameObject);
+        CellManager.Instance.UnregisterCell(this);
     }
 }
