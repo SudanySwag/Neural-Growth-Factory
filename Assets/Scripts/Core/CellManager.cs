@@ -18,8 +18,7 @@ public class CellManager : MonoBehaviour
 
     public static CellManager Instance { get; private set; }
     private Dictionary<CellType, GameObject> prefabs = new Dictionary<CellType, GameObject>();
-    private Dictionary<CellType, int> counts = ((CellType[])System.Enum.GetValues(typeof(CellType)))
-    .ToDictionary(ct => ct, ct => 0);
+    
         [System.Serializable]
     public class CellCountEntry
     {
@@ -91,7 +90,6 @@ public class CellManager : MonoBehaviour
 
     public void RegisterCell(Cell cellInstance)
     {
-        counts[cellInstance.cellType]++;
         cells[cellInstance.cellType].Add(cellInstance);
         
         UpdateDisplayCount(cellInstance.cellType);
@@ -99,13 +97,7 @@ public class CellManager : MonoBehaviour
 
     public void UnregisterCell(Cell cellInstance)
     {
-        counts[cellInstance.cellType]--;
-        // Remove cell instance from tracking list
-        if (cells.ContainsKey(cellInstance.cellType))
-        {
-            cells[cellInstance.cellType].Remove(cellInstance);
-        }
-
+        cells[cellInstance.cellType].Remove(cellInstance);
         UpdateDisplayCount(cellInstance.cellType);
     }
 

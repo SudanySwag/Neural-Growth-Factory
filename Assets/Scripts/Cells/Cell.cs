@@ -135,7 +135,7 @@ public abstract class Cell : MonoBehaviour, IClickable
         return x * x * (3f - 2f * x); // smoothstep
     }
 
-    void onDestroy()
+    void OnDestroy()
     {
         CellManager.Instance.UnregisterCell(this);
     }

@@ -5,7 +5,7 @@ public class Lineage : MonoBehaviour
 {
     // Reference to the UIDocument component (assign in the Inspector)
     public UIDocument document;
-    static public bool GMCCheck = false;
+    static public short GMCLevel = 0;
 
     void OnEnable()
     {
@@ -25,8 +25,23 @@ public class Lineage : MonoBehaviour
     // The method called when the button is clicked
     private void ButtonClicked()
     {
-        if (CellManager.Instance.getCellCount(CellType.RGC) < 5 || GMCCheck) return;
-        CellManager.Instance.KillCells(CellType.RGC, 5);
-        GMCCheck = true;
+        switch(GMCLevel)
+        {
+            case 0:
+                if (CellManager.Instance.getCellCount(CellType.RGC) < 10) return;
+                CellManager.Instance.KillCells(CellType.RGC, 10);
+                GMCLevel++;
+                break;
+            case 1:
+                if (CellManager.Instance.getCellCount(CellType.RGC) < 100) return;
+                CellManager.Instance.KillCells(CellType.RGC, 100);
+                GMCLevel++;
+                break;
+            case 2:
+                if (CellManager.Instance.getCellCount(CellType.RGC) < 1000) return;
+                CellManager.Instance.KillCells(CellType.RGC, 1000);
+                GMCLevel++;
+                break;
+        }
     }
 }

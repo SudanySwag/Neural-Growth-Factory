@@ -8,6 +8,6 @@ public class NeuralStemCell : Cell
     {
         base.Click();
 
-        Divide(Lineage.GMCCheck ? CellManager.Instance.GetPrefab(CellType.GMC) : CellManager.Instance.GetPrefab(CellType.RGC));
+        Divide(Lineage.GMCLevel > 0 ? CellManager.Instance.GetPrefab(CellType.GMC) : CellManager.Instance.GetPrefab(CellType.RGC));
     }
 }

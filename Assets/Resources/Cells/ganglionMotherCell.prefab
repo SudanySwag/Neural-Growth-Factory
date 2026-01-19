@@ -157,6 +157,4 @@ MonoBehaviour:
   settleTime: 0.15
   squashAmount: 0.2
   separationDistance: 0.6
-  cellType: 0
-  spawnOffset: {x: 1, y: 0, z: 0}
   gmcCount: 1
