@@ -1,7 +1,7 @@
 :root {
 }
 
-#RadioButtonGroup > .unity-base-field__input > #contentContainer {
+#Upgrades > .unity-base-field__input > #contentContainer {
     height: 100%;
 }
 
@@ -9,6 +9,10 @@
     flex-direction: row;
     width: 53%;
     align-self: flex-end;
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: ease-out-sine;
+    transition-duration: 5s;
 }
 
 .upgradeButton {
@@ -16,9 +20,9 @@
     width: 12%;
     height: 12%;
     margin-left: 88%;
-    transition-property: margin-left;
-    transition-duration: 0.3s;
-    transition-timing-function: ease-in-out-sine;
+    transition-property: margin-left, opacity;
+    transition-duration: 0.3s, 0s;
+    transition-timing-function: ease-in-out-sine, ease;
 }
 
 .upgradeButton:selected {
@@ -30,7 +34,7 @@
     flex-grow: 1;
 }
 
-#RadioButtonGroup > #Off {
+#Upgrades > #Off {
     translate: 0% 0;
     position: absolute;
     height: 100%;
@@ -42,16 +46,16 @@
     opacity: 0;
 }
 
-#RadioButtonGroup > #Off:selected {
+#Upgrades > #Off:selected {
     translate: -100% 0;
 }
 
-#RadioButtonGroup > .buttonPanel > .upgradeButton > .unity-radio-button__input {
+#Upgrades > .buttonPanel > .upgradeButton > .unity-radio-button__input {
     justify-content: center;
     scale: 5 5;
 }
 
-#RadioButtonGroup > .buttonPanel > .upgradeButton > .unity-radio-button__input > .unity-radio-button__checkmark-background {
+#Upgrades > .buttonPanel > .upgradeButton > .unity-radio-button__input > .unity-radio-button__checkmark-background {
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
@@ -59,5 +63,5 @@
     justify-content: center;
 }
 
-#RadioButtonGroup > .buttonPanel > .upgradeButton > .unity-radio-button__input > .unity-radio-button__checkmark-background > #unity-checkmark {
+#Upgrades > .buttonPanel > .upgradeButton > .unity-radio-button__input > .unity-radio-button__checkmark-background > #unity-checkmark {
 }

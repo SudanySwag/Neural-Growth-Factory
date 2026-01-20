@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Neural-Growth-Factory.sln"
+    "dotnet.defaultSolution": "Neural Growth Factory.sln"
 }
