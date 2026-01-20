@@ -4,7 +4,7 @@
         <ui:RadioButtonGroup name="RadioButtonGroup" style="height: 100%;">
             <ui:RadioButton name="Neurosphere" class="sidebarButton" />
             <ui:RadioButton name="Specimens" class="sidebarButton" style="transition-delay: 0.1s;" />
-            <ui:RadioButton name="Motors" class="sidebarButton" style="transition-delay: 0.2s; transition-timing-function: ease-in-out-circ;" />
+            <ui:RadioButton name="Motors" class="sidebarButton" style="transition-delay: 0.2s;" />
             <ui:RadioButton name="Circuitry" class="sidebarButton" style="transition-delay: 0.3s;" />
             <ui:RadioButton name="Synapses" class="sidebarButton" style="transition-delay: 0.4s;" />
             <ui:RadioButton name="Stats" class="sidebarButton" style="transition-delay: 0.5s;" />
