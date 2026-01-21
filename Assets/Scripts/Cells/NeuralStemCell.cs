@@ -6,6 +6,6 @@ public class NeuralStemCell : Cell
 
     protected override void OnClick()
     {
-        Divide(Lineage.GMCLevel > 0 ? CellManager.Instance.GetPrefab(CellType.GMC) : CellManager.Instance.GetPrefab(CellType.RGC));
+        Divide(Upgrades.GMCLevel > 0 ? CellManager.Instance.GetPrefab(CellType.GMC) : CellManager.Instance.GetPrefab(CellType.RGC));
     }
 }

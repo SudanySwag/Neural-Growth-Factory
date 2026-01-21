@@ -3,10 +3,10 @@
     <Style src="project://database/Assets/Scenes/UI/upgrades.uss?fileID=7433441132597879392&amp;guid=f0aa6e45b1c19d641aeb6ff8ee0a7f9e&amp;type=3#upgrades" />
     <ui:RadioButtonGroup name="Upgrades" value="0" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 100%;">
         <ui:RadioButton name="Off" style="width: 54%;" />
-        <ui:VisualElement name="LineageHolder" class="buttonPanel" style="flex-grow: 1;">
+        <ui:VisualElement name="LineageHolder" class="buttonPanel">
             <ui:RadioButton name="LineageButton" class="upgradeButton" />
             <ui:VisualElement name="LineagePanel" class="upgradePanel">
-                <ui:Instance template="Evolution" />
+                <ui:Instance template="Evolution" style="height: 100%;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:RadioButtonGroup>

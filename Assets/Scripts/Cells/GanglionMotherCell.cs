@@ -6,7 +6,7 @@ public class GanglionMotherCell : Cell
     [SerializeField] private short gmcCount = 1;
 
     void Start() {
-        gmcCount = Lineage.GMCLevel;
+        gmcCount = Upgrades.GMCLevel;
 
         float colorValue = Mathf.Lerp(0.2f, 1f, gmcCount / 3f); // 0->1.0, 3->0.5
         GetComponent<Renderer>().material.color *= new Color(colorValue, colorValue, colorValue);
