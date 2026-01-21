@@ -4,10 +4,8 @@ public class TotipotentStemCell : Cell
 {
     public override CellType cellType => CellType.TPC;
 
-    public override void Click()
+    protected override void OnClick()
     {
-        base.Click();
-
         Differentiate(CellManager.Instance.GetPrefab(CellType.NSC));
     }
 }

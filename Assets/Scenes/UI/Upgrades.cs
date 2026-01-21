@@ -31,7 +31,7 @@ public class Lineage : MonoBehaviour
     //Hide screen until certain count
     void HandleCellBirth(CellType cellType)
     {
-        if (cellType == CellType.RGC && CellManager.Instance.getCellCount(CellType.RGC) >= 10)
+        if (cellType == CellType.RGC && CellManager.Instance.GetCellCount(CellType.RGC) >= 10)
         {
             document.rootVisualElement.Q<VisualElement>("LineageHolder").style.opacity = 1f;
             document.rootVisualElement.Q<VisualElement>("LineageHolder").SetEnabled(true);
@@ -45,17 +45,17 @@ public class Lineage : MonoBehaviour
         switch(GMCLevel)
         {
             case 0:
-                if (CellManager.Instance.getCellCount(CellType.RGC) < 10) return;
+                if (CellManager.Instance.GetCellCount(CellType.RGC) < 10) return;
                 CellManager.Instance.KillCells(CellType.RGC, 10);
                 GMCLevel++;
                 break;
             case 1:
-                if (CellManager.Instance.getCellCount(CellType.RGC) < 100) return;
+                if (CellManager.Instance.GetCellCount(CellType.RGC) < 100) return;
                 CellManager.Instance.KillCells(CellType.RGC, 100);
                 GMCLevel++;
                 break;
             case 2:
-                if (CellManager.Instance.getCellCount(CellType.RGC) < 1000) return;
+                if (CellManager.Instance.GetCellCount(CellType.RGC) < 1000) return;
                 CellManager.Instance.KillCells(CellType.RGC, 1000);
                 GMCLevel++;
                 break;

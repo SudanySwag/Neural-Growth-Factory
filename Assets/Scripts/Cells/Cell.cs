@@ -20,15 +20,18 @@ public abstract class Cell : MonoBehaviour, IClickable
         CellManager.Instance.RegisterCell(this);
     }
 
-    public void freeCell()
+    protected void freeCell()
     {
         busy = false;
     }
 
-    virtual public void Click()
+    public void Click()
     {
         print($"{this.GetType().FullName} clicked");
+        OnClick();
     }
+
+    virtual protected void OnClick() {}
 
     public void Differentiate(GameObject newForm)
     {

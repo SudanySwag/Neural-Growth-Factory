@@ -46,7 +46,6 @@ public class CellManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -68,12 +67,6 @@ public class CellManager : MonoBehaviour
         cells[CellType.RGC].prefab = Resources.Load<GameObject>("Cells/radialGlialCell");
         cells[CellType.NB].prefab = Resources.Load<GameObject>("Cells/neuroblast");
         cells[CellType.N].prefab = Resources.Load<GameObject>("Cells/neuron");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public GameObject GetPrefab(CellType cellType)
@@ -118,7 +111,7 @@ public class CellManager : MonoBehaviour
         }
     }
 
-    public int getCellCount(CellType cellType)
+    public int GetCellCount(CellType cellType)
     {
         if (cells.TryGetValue(cellType, out CellInfo cellInfo))
         {

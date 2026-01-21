@@ -846,11 +846,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   cam: {fileID: 330585545}
-  panSpeed: 1
-  invertPan: 0
-  zoomSpeed: 2
-  minOrthoSize: 0.5
-  maxOrthoSize: 50
+  clickableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &1429027714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +863,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cam: {fileID: 0}
   clickableLayers:
-    serializedVersion: 2
     m_Bits: 4294967295
 --- !u!1 &1432870387
 GameObject:
@@ -1224,7 +1221,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0, b: 0, a: 1}
+      maxColor: {r: 0.383, g: 0.383, b: 0.383, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
