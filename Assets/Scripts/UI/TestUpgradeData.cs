@@ -89,6 +89,42 @@ public static class TestUpgradeData
                 Cost = level => 100 + (level * 50),
                 Prereqs = new[] { "chloroplast", "ribosome", "golgi" },
                 Position = new Vector2(150, 450)
+            },
+
+            // GMC Tier 1 - Unlock GMC spawning (cost: 10 RGC)
+            new UpgradeDef
+            {
+                Id = "gmc-basic",
+                Title = "GMC Production",
+                Level = 0,
+                maxLevel = 1,
+                Cost = level => 10,
+                Prereqs = new[] { "nucleus" },
+                Position = new Vector2(350, 250)
+            },
+
+            // GMC Tier 2 - Enhanced GMC (cost: 100 RGC)
+            new UpgradeDef
+            {
+                Id = "gmc-enhanced",
+                Title = "GMC Enhancement",
+                Level = 0,
+                maxLevel = 1,
+                Cost = level => 100,
+                Prereqs = new[] { "gmc-basic", "ribosome" },
+                Position = new Vector2(350, 350)
+            },
+
+            // GMC Tier 3 - Advanced GMC (cost: 1000 RGC)
+            new UpgradeDef
+            {
+                Id = "gmc-advanced",
+                Title = "GMC Amplification",
+                Level = 0,
+                maxLevel = 1,
+                Cost = level => 1000,
+                Prereqs = new[] { "gmc-enhanced", "golgi" },
+                Position = new Vector2(350, 450)
             }
         };
 

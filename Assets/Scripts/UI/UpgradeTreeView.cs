@@ -9,16 +9,70 @@ public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
 
     VisualElement root, content, nodesLayer;
     readonly Dictionary<string, Button> nodeById = new();
+    bool initialized = false;
 
-    void Awake()
+    public void SetDocument(UIDocument document)
     {
-        root = (doc ? doc : GetComponent<UIDocument>()).rootVisualElement;
-        content = root.Q<VisualElement>("Content");
+        doc = document;
+        initialized = false; // Force re-initialization with new document
+    }
+
+    void EnsureInitialized()
+    {
+        if (initialized) return;
+
+        var uiDoc = doc ? doc : GetComponent<UIDocument>();
+        if (uiDoc == null)
+        {
+            Debug.LogError("UpgradeTreeView: No UIDocument found! Please assign a UIDocument in the Inspector or add a UIDocument component.");
+            return;
+        }
+
+        root = uiDoc.rootVisualElement;
+        if (root == null)
+        {
+            Debug.LogError("UpgradeTreeView: UIDocument root is null!");
+            return;
+        }
+
         nodesLayer = root.Q<VisualElement>("Lineage");
+
+        if (nodesLayer == null)
+        {
+            Debug.LogError("UpgradeTreeView: Could not find 'Lineage' element in UIDocument. Check that the UXML structure is correct.");
+            Debug.Log($"Root element: {root.name}, children: {root.childCount}");
+
+            // Debug: print all elements in hierarchy
+            DebugPrintHierarchy(root, 0);
+        }
+        else
+        {
+            initialized = true;
+            Debug.Log("UpgradeTreeView: Successfully initialized and found Lineage element");
+        }
+    }
+
+    void DebugPrintHierarchy(VisualElement element, int depth)
+    {
+        string indent = new string(' ', depth * 2);
+        Debug.Log($"{indent}{element.GetType().Name} name='{element.name}' class='{string.Join(",", element.GetClasses())}'");
+
+        foreach (var child in element.Children())
+        {
+            DebugPrintHierarchy(child, depth + 1);
+        }
     }
 
     public void BuildTree(IEnumerable<UpgradeDef> upgrades)
     {
+        EnsureInitialized();
+
+        if (nodesLayer == null)
+        {
+            Debug.LogError("UpgradeTreeView: nodesLayer is null. Cannot build tree.");
+            return;
+        }
+
         nodesLayer.hierarchy.Clear();
         nodeById.Clear();
 
@@ -36,28 +90,18 @@ public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
             nodesLayer.hierarchy.Add(b);
             nodeById[u.Id] = b;
         }
-
-        var v = new Button { text = "Testing" };
-        v.AddToClassList("node");
-        v.name = "test";
-
-        v.style.left = 0;
-        v.style.top  = 0;
-
-        v.clicked += () => NodeClicked?.Invoke("test");
-
-        nodesLayer.hierarchy.Add(v);
-        nodeById["test"] = v;
     }
 
     public void SetSelected(string id)
     {
+        EnsureInitialized();
         foreach (var kv in nodeById)
             kv.Value.EnableInClassList("is-selected", kv.Key == id);
     }
 
     public void SetUnlocked(string id, bool unlocked)
     {
+        EnsureInitialized();
         if (nodeById.TryGetValue(id, out var b))
             b.EnableInClassList("is-unlocked", unlocked);
     }

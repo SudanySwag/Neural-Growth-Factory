@@ -2,6 +2,5 @@
     <Style src="project://database/Assets/Scenes/UI/upgrades.uss?fileID=7433441132597879392&amp;guid=f0aa6e45b1c19d641aeb6ff8ee0a7f9e&amp;type=3#upgrades" />
     <ui:VisualElement name="Lineage" style="flex-grow: 1; left: 0; top: 0;">
         <ui:Button name="test" class="node" style="align-self: center;" />
-        <ui:Button text="5 Neurons For MGC" name="mgc-test" enabled="false" style="align-self: center; top: auto; bottom: 50%; opacity: 0;" />
     </ui:VisualElement>
 </ui:UXML>
