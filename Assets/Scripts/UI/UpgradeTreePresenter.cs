@@ -13,6 +13,7 @@ public sealed class UpgradeTreePresenter
         view.BuildTree(catalog.ById.Values);
 
         view.NodeClicked += OnNodeClicked;
+        view.UpgradeClicked += OnUpgradeClicked;
         state.Changed += Refresh;
 
         Refresh();
@@ -20,9 +21,14 @@ public sealed class UpgradeTreePresenter
 
     void OnNodeClicked(string id)
     {
-        if (!catalog.ById.TryGetValue(id, out var upgrade)) return;
+        if (!catalog.ById.ContainsKey(id)) return;
 
         state.Select(id);
+    }
+
+    void OnUpgradeClicked(string id)
+    {
+        if (!catalog.ById.TryGetValue(id, out var upgrade)) return;
 
         // Attempt to purchase if possible
         if (CanPurchase(upgrade))
@@ -38,11 +44,8 @@ public sealed class UpgradeTreePresenter
             return false;
 
         // Check if all prerequisites are unlocked
-        foreach (var prereqId in upgrade.Prereqs)
-        {
-            if (!state.IsUnlocked(prereqId))
-                return false;
-        }
+        if (!ArePrereqsMet(upgrade))
+            return false;
 
         // Check if player has sufficient RGC cells
         int cost = upgrade.Cost(upgrade.Level);
@@ -50,6 +53,16 @@ public sealed class UpgradeTreePresenter
         if (currentCells < cost)
             return false;
 
+        return true;
+    }
+
+    bool ArePrereqsMet(UpgradeDef upgrade)
+    {
+        foreach (var prereqId in upgrade.Prereqs)
+        {
+            if (!state.IsUnlocked(prereqId))
+                return false;
+        }
         return true;
     }
 
@@ -109,6 +122,9 @@ public sealed class UpgradeTreePresenter
         view.SetSelected(state.SelectedId);
 
         foreach (var u in catalog.ById.Values)
+        {
             view.SetUnlocked(u.Id, state.IsUnlocked(u.Id));
+            view.SetUpgradeLevel(u.Id, u.Level, u.maxLevel, ArePrereqsMet(u));
+        }
     }
 }

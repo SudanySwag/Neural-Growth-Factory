@@ -15,6 +15,7 @@ public static class TestUpgradeData
             {
                 Id = "mitochondria",
                 Title = "Mitochondria",
+                Description = "The powerhouse of the cell. Increases energy production and cellular efficiency.",
                 Level = 0,
                 maxLevel = 5,
                 Cost = level => 10 + (level * 5),
@@ -27,6 +28,7 @@ public static class TestUpgradeData
             {
                 Id = "nucleus",
                 Title = "Nucleus",
+                Description = "The control center of the cell. Enables advanced cellular functions and genetic improvements.",
                 Level = 0,
                 maxLevel = 3,
                 Cost = level => 25 + (level * 10),
@@ -38,6 +40,7 @@ public static class TestUpgradeData
             {
                 Id = "membrane",
                 Title = "Cell Membrane",
+                Description = "Protective barrier that regulates what enters and exits the cell. Improves cell durability.",
                 Level = 0,
                 maxLevel = 4,
                 Cost = level => 20 + (level * 8),
@@ -50,6 +53,7 @@ public static class TestUpgradeData
             {
                 Id = "chloroplast",
                 Title = "Chloroplast",
+                Description = "Harnesses light energy for photosynthesis. Provides passive resource generation.",
                 Level = 0,
                 maxLevel = 3,
                 Cost = level => 40 + (level * 15),
@@ -61,6 +65,7 @@ public static class TestUpgradeData
             {
                 Id = "ribosome",
                 Title = "Ribosome",
+                Description = "Protein synthesis factory. Accelerates growth and unlocks new cellular capabilities.",
                 Level = 0,
                 maxLevel = 5,
                 Cost = level => 35 + (level * 12),
@@ -72,6 +77,7 @@ public static class TestUpgradeData
             {
                 Id = "golgi",
                 Title = "Golgi Apparatus",
+                Description = "Packages and distributes proteins throughout the cell. Improves resource efficiency.",
                 Level = 0,
                 maxLevel = 3,
                 Cost = level => 30 + (level * 10),
@@ -84,6 +90,7 @@ public static class TestUpgradeData
             {
                 Id = "reproduction",
                 Title = "Reproduction",
+                Description = "Enables cellular division and self-replication. Greatly increases population growth rate.",
                 Level = 0,
                 maxLevel = 2,
                 Cost = level => 100 + (level * 50),
@@ -96,6 +103,7 @@ public static class TestUpgradeData
             {
                 Id = "gmc-basic",
                 Title = "GMC Production",
+                Description = "Unlocks the ability to spawn Ganglion Mother Cells. Begin building your neural network.",
                 Level = 0,
                 maxLevel = 1,
                 Cost = level => 10,
@@ -108,6 +116,7 @@ public static class TestUpgradeData
             {
                 Id = "gmc-enhanced",
                 Title = "GMC Enhancement",
+                Description = "Improves GMC capabilities and efficiency. Enhanced cells produce better offspring.",
                 Level = 0,
                 maxLevel = 1,
                 Cost = level => 100,
@@ -120,6 +129,7 @@ public static class TestUpgradeData
             {
                 Id = "gmc-advanced",
                 Title = "GMC Amplification",
+                Description = "Maximizes GMC potential. Unlocks the most powerful neural growth capabilities.",
                 Level = 0,
                 maxLevel = 1,
                 Cost = level => 1000,

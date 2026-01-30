@@ -7,6 +7,7 @@ using System.Linq;
 public sealed class UpgradeDef{
         public string Id;
         public string Title;
+        public string Description;
         public Func<short, int> Cost;
         public short Level;
         public short maxLevel;
