@@ -50,8 +50,12 @@ public class Counter : MonoBehaviour
 
         counter.style.top = new Length(-150, LengthUnit.Percent);
 
-        CellManager.CellBirth += SetRGCCount;
         CellManager.CellBirth += slideDown;
+    }
+
+    public void Update()
+    {
+        SetRGCCount(CellType.RGC);
     }
 
 }

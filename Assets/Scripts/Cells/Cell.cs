@@ -138,7 +138,39 @@ public abstract class Cell : MonoBehaviour, IClickable
         return x * x * (3f - 2f * x); // smoothstep
     }
 
-    void OnDestroy()
+    [Header("Death Animation")]
+    [SerializeField] private float deathDuration = 0.8f;
+
+    public void Apoptosis()
+    {
+        if (busy) return;
+        StartCoroutine(ApoptosisRoutine());
+    }
+
+    private IEnumerator ApoptosisRoutine()
+    {
+        busy = true;
+        GetComponent<SphereCollider>().enabled = false;
+
+        Vector3 startScale = transform.localScale;
+        Renderer rend = GetComponent<Renderer>();
+        Color startColor = rend.material.color;
+        Color endColor = new Color(0.4f, 0.4f, 0.4f, 0f);
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime / deathDuration;
+            float s = Smooth01(t);
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, s);
+            rend.material.color = Color.Lerp(startColor, endColor, s);
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
+    void onDestroy()
     {
         CellManager.Instance.UnregisterCell(this);
     }

@@ -140,7 +140,7 @@ public class CellManager : MonoBehaviour
             int index = Random.Range(0, cellInfo.cellList.Count);
             Cell cell = cellInfo.cellList[index];
             cellInfo.cellList.RemoveAt(index);
-            Destroy(cell.gameObject);
+            cell.Apoptosis();
         }
     }
 }

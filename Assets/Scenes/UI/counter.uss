@@ -15,7 +15,7 @@
     border-bottom-right-radius: 11px;
     border-bottom-left-radius: 11px;
     transition-property: top;
-    transition-duration: 1s;
+    transition-duration: 2s;
     transition-timing-function: ease-out-circ;
 }
 
