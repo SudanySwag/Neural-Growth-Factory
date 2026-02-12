@@ -21,26 +21,7 @@ public sealed class UpgradeCatalog
 
     public UpgradeCatalog(IEnumerable<UpgradeDef> defs)
         => ById = defs.ToDictionary(d => d.Id);
-}
 
-public sealed class UpgradeState
-{
-    public event Action Changed;
-
-    public string SelectedId { get; private set; }
-    public HashSet<string> Unlocked { get; } = new();
-
-    public bool IsUnlocked(string id) => Unlocked.Contains(id);
-
-    public void Select(string id)
-    {
-        SelectedId = id;
-        Changed?.Invoke();
-    }
-
-    public void Unlock(string id)
-    {
-        if (Unlocked.Add(id))
-            Changed?.Invoke();
-    }
+    public bool IsUnlocked(string id) => ById.TryGetValue(id, out var def) && def.Level > 0;
+    public int GetUpgradeLevel(string id) => ById.TryGetValue(id, out var def) ? def.Level : 0;
 }

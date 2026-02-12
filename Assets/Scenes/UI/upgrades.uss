@@ -166,6 +166,19 @@
     margin-bottom: 16px;
 }
 
+.node-detail-level {
+    font-size: 16px;
+    color: rgba(160, 180, 220, 1);
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.node-detail-cost {
+    font-size: 14px;
+    color: rgba(255, 200, 80, 1);
+    margin-bottom: 12px;
+}
+
 .upgrade-button {
     align-self: flex-start;
     padding: 10px 24px;

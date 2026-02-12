@@ -10,7 +10,7 @@ public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
 
     VisualElement root, lineageContainer, nodesContainer;
     VisualElement detailPanel;
-    Label nameLabel, descriptionLabel;
+    Label nameLabel, descriptionLabel, levelLabel, costLabel;
     Button upgradeButton;
     readonly Dictionary<string, Button> nodeById = new();
     readonly Dictionary<string, UpgradeDef> upgradeById = new();
@@ -67,6 +67,8 @@ public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
             detailPanel = lineageContainer.Q<VisualElement>("NodeDetailPanel");
             nameLabel = lineageContainer.Q<Label>("NodeName");
             descriptionLabel = lineageContainer.Q<Label>("NodeDescription");
+            levelLabel = lineageContainer.Q<Label>("NodeLevel");
+            costLabel = lineageContainer.Q<Label>("NodeCost");
             upgradeButton = lineageContainer.Q<Button>("UpgradeButton");
 
             if (upgradeButton != null)
@@ -201,8 +203,9 @@ public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
             b.AddToClassList("is-locked"); // Default to locked
             b.name = u.Id;
 
-            b.style.left = u.Position.x;
-            b.style.top  = u.Position.y;
+            b.style.position = Position.Absolute;
+            b.style.left = new Length(u.Position.x, LengthUnit.Percent);
+            b.style.top  = new Length(u.Position.y, LengthUnit.Percent);
 
             b.clicked += () =>
             {
@@ -232,6 +235,11 @@ public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
             {
                 nameLabel.text = upgrade.Title;
                 descriptionLabel.text = upgrade.Description ?? "";
+                levelLabel.text = $"Level {upgrade.Level} / {upgrade.maxLevel}";
+                if (upgrade.Level >= upgrade.maxLevel)
+                    costLabel.text = "MAX";
+                else
+                    costLabel.text = $"Cost: {upgrade.Cost(upgrade.Level)} RGC";
                 detailPanel.EnableInClassList("visible", true);
             }
             else

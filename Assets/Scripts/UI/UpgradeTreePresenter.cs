@@ -2,20 +2,24 @@ public sealed class UpgradeTreePresenter
 {
     readonly IUpgradeTreeView view;
     readonly UpgradeCatalog catalog;
-    readonly UpgradeState state;
+    private string selectedId;
 
-    public UpgradeTreePresenter(IUpgradeTreeView view, UpgradeCatalog catalog, UpgradeState state)
+    public UpgradeTreePresenter(IUpgradeTreeView view, UpgradeCatalog catalog)
     {
         this.view = view;
         this.catalog = catalog;
-        this.state = state;
 
         view.BuildTree(catalog.ById.Values);
 
         view.NodeClicked += OnNodeClicked;
         view.UpgradeClicked += OnUpgradeClicked;
-        state.Changed += Refresh;
 
+        Refresh();
+    }
+
+    void Select(string id)
+    {
+        selectedId = id;
         Refresh();
     }
 
@@ -23,7 +27,7 @@ public sealed class UpgradeTreePresenter
     {
         if (!catalog.ById.ContainsKey(id)) return;
 
-        state.Select(id);
+        Select(id);
     }
 
     void OnUpgradeClicked(string id)
@@ -60,7 +64,7 @@ public sealed class UpgradeTreePresenter
     {
         foreach (var prereqId in upgrade.Prereqs)
         {
-            if (!state.IsUnlocked(prereqId))
+            if (!catalog.IsUnlocked(prereqId))
                 return false;
         }
         return true;
@@ -75,55 +79,19 @@ public sealed class UpgradeTreePresenter
         // Increment level
         upgrade.Level++;
 
-        // Unlock the upgrade if this is the first level
-        if (upgrade.Level == 1)
-        {
-            state.Unlock(upgrade.Id);
-        }
-
-        // Apply the upgrade's effect
-        ApplyUpgradeEffect(upgrade);
-
         // Refresh the UI
         Refresh();
 
         UnityEngine.Debug.Log($"Purchased {upgrade.Title} (Level {upgrade.Level})");
     }
 
-    void ApplyUpgradeEffect(UpgradeDef upgrade)
-    {
-        // Map upgrade IDs to gameplay effects
-        switch (upgrade.Id)
-        {
-            case "gmc-basic":
-                Upgrades.GMCLevel = 1;
-                UnityEngine.Debug.Log("GMC Production unlocked - NSC now spawns GMC");
-                break;
-
-            case "gmc-enhanced":
-                Upgrades.GMCLevel = 2;
-                UnityEngine.Debug.Log("GMC Enhancement unlocked - GMC divides 2 times");
-                break;
-
-            case "gmc-advanced":
-                Upgrades.GMCLevel = 3;
-                UnityEngine.Debug.Log("GMC Amplification unlocked - GMC divides 3 times");
-                break;
-
-            // Add other upgrade effects here as needed
-            default:
-                // No special effect for this upgrade
-                break;
-        }
-    }
-
     void Refresh()
     {
-        view.SetSelected(state.SelectedId);
+        view.SetSelected(selectedId);
 
         foreach (var u in catalog.ById.Values)
         {
-            view.SetUnlocked(u.Id, state.IsUnlocked(u.Id));
+            view.SetUnlocked(u.Id, catalog.IsUnlocked(u.Id));
             view.SetUpgradeLevel(u.Id, u.Level, u.maxLevel, ArePrereqsMet(u));
         }
     }

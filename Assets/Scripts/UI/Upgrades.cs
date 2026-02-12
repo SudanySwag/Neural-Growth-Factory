@@ -6,17 +6,19 @@ public class Upgrades : MonoBehaviour
     private const string LINEAGE_HOLDER_NAME = "LineageHolder";
     private const int LINEAGE_UNLOCK_THRESHOLD = 10;
 
+    public static Upgrades Instance { get; private set; }
+
     public UIDocument document;
 
-    public static short GMCLevel = 0;
-
     private UpgradeTreePresenter upgradePresenter;
-    private UpgradeState upgradeState;
+    private UpgradeCatalog upgradeCatalog;
     private VisualElement lineageHolder;
 
     void OnEnable()
     {
+        Instance = this;
         CellManager.CellBirth += HandleCellBirth;
+        upgradeCatalog = UpgradeData.CreateCatalog();
         InitializeUI();
     }
 
@@ -43,8 +45,7 @@ public class Upgrades : MonoBehaviour
 
     void InitializeUpgradeTree()
     {
-        upgradeState = new UpgradeState();
-        var catalog = TestUpgradeData.CreateTestCatalog();
+        
 
         var view = GetComponent<UpgradeTreeView>();
         if (view == null)
@@ -59,10 +60,12 @@ public class Upgrades : MonoBehaviour
             view.SetDocument(document);
         }
 
-        upgradePresenter = new UpgradeTreePresenter(view, catalog, upgradeState);
-        upgradeState.Unlock("mitochondria");
+        upgradePresenter = new UpgradeTreePresenter(view, upgradeCatalog);
     }
 
+    public bool IsUpgradeUnlocked(string id) => upgradeCatalog.IsUnlocked(id);
+    public int GetUpgradeLevel(string id) => upgradeCatalog.GetUpgradeLevel(id);
+    
     private void HandleCellBirth(CellType cellType)
     {
         if (cellType == CellType.RGC &&

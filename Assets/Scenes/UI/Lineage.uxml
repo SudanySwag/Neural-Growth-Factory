@@ -5,6 +5,8 @@
         <ui:VisualElement name="NodeDetailPanel" class="node-detail-panel">
             <ui:Label name="NodeName" class="node-detail-name" />
             <ui:Label name="NodeDescription" class="node-detail-description" />
+            <ui:Label name="NodeLevel" class="node-detail-level" />
+            <ui:Label name="NodeCost" class="node-detail-cost" />
             <ui:Button name="UpgradeButton" text="Upgrade" class="upgrade-button" />
         </ui:VisualElement>
     </ui:VisualElement>
