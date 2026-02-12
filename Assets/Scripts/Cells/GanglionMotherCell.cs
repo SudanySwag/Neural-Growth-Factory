@@ -3,11 +3,10 @@ using UnityEngine;
 public class GanglionMotherCell : Cell
 {
     public override CellType cellType => CellType.GMC;
-    [SerializeField] private short gmcCount = 1;
+    [SerializeField] private short gmcCount = 0;
 
     void Start() {
 
-        gmcCount = 0;
         if (Upgrades.Instance.IsUpgradeUnlocked("gmc-advanced"))
             gmcCount = 3;
         else if (Upgrades.Instance.IsUpgradeUnlocked("gmc-enhanced"))

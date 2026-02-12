@@ -1,10 +1,10 @@
 public sealed class UpgradeTreePresenter
 {
-    readonly IUpgradeTreeView view;
+    readonly UpgradeTreeView view;
     readonly UpgradeCatalog catalog;
     private string selectedId;
 
-    public UpgradeTreePresenter(IUpgradeTreeView view, UpgradeCatalog catalog)
+    public UpgradeTreePresenter(UpgradeTreeView view, UpgradeCatalog catalog)
     {
         this.view = view;
         this.catalog = catalog;

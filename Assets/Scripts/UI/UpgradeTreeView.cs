@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System;
-public sealed class UpgradeTreeView : MonoBehaviour, IUpgradeTreeView
+public sealed class UpgradeTreeView : MonoBehaviour
 {
     [SerializeField] UIDocument doc;
     public event Action<string> NodeClicked;

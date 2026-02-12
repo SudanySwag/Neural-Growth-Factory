@@ -21,14 +21,14 @@ public class CellManager : MonoBehaviour
         public CellType cellType;
         public GameObject prefab;
         public List<Cell> cellList = new List<Cell>();
-        public int lifetimeCount; // Total cells created of this type
+        public int lifetimeCount = 0; // Total cells created of this type
     }
 
     [System.Serializable]
     public class CellCountEntry
     {
         public CellType cellType;
-        public int count;
+        public int count = 0;
     }
 
     public static CellManager Instance { get; private set; }
@@ -44,9 +44,7 @@ public class CellManager : MonoBehaviour
     {
         // Singleton pattern
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
         {
             Destroy(gameObject);
@@ -56,8 +54,8 @@ public class CellManager : MonoBehaviour
         // Initialize cells dictionary with CellInfo for each type
         foreach (CellType ct in System.Enum.GetValues(typeof(CellType)))
         {
-            cells[ct] = new CellInfo { cellType = ct, lifetimeCount = 0 };
-            countsDisplay.Add(new CellCountEntry { cellType = ct, count = 0 });
+            cells[ct] = new CellInfo { cellType = ct};
+            countsDisplay.Add(new CellCountEntry { cellType = ct });
         }
 
         // Load prefabs from Resources folder

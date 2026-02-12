@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Contains test upgrade data for development and testing purposes.
+/// List of upgrades
 /// </summary>
 public static class UpgradeData
 {
