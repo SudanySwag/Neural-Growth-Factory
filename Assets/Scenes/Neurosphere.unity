@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SidebarController
   sidebarDocument: {fileID: 168573324}
-  upgradesDocument: {fileID: 0}
   environments:
   - {fileID: 1916478031}
   - {fileID: 486765250}
@@ -204,7 +203,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -258,7 +257,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -340,7 +339,7 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 486765251}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lineage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +506,7 @@ GameObject:
   - component: {fileID: 489894979}
   - component: {fileID: 489894978}
   - component: {fileID: 489894977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,6 +606,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489894975}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &510364084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510364086}
+  - component: {fileID: 510364085}
+  m_Layer: 0
+  m_Name: Upgrades
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &510364085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510364084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db156d8663dd0da4db1ac964f35744a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lineage
+  document: {fileID: 1432870388}
+  neurosphereView: {fileID: 1432870391}
+  lineageView: {fileID: 1432870392}
+--- !u!4 &510364086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510364084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.29564, y: 1.40845, z: -0.20383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510878819
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 510878820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,8 +718,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: neuralStemCell
       objectReference: {fileID: 0}
+    - target: {fileID: 6275607954566489861, guid: 5c4159dee07870b45985f276468aa8cd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4434340137001995762, guid: 5c4159dee07870b45985f276468aa8cd, type: 3}
+    - {fileID: 1578150702470987757, guid: 5c4159dee07870b45985f276468aa8cd, type: 3}
+    - {fileID: -9040991422226673406, guid: 5c4159dee07870b45985f276468aa8cd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -710,8 +762,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: radialGlialCell
       objectReference: {fileID: 0}
+    - target: {fileID: 4916272863054816311, guid: 8d2f895ce4707934b85d2a4c3f314549, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2636464818933369362, guid: 8d2f895ce4707934b85d2a4c3f314549, type: 3}
+    - {fileID: 1396944410182997450, guid: 8d2f895ce4707934b85d2a4c3f314549, type: 3}
+    - {fileID: -8077177571318814718, guid: 8d2f895ce4707934b85d2a4c3f314549, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -727,6 +785,10 @@ PrefabInstance:
     - target: {fileID: 1937543653397530363, guid: 1ba4db9002b40084393924998aaa625c, type: 3}
       propertyPath: m_Name
       value: neuroblast
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937543653397530363, guid: 1ba4db9002b40084393924998aaa625c, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5540844124402577394, guid: 1ba4db9002b40084393924998aaa625c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -748,7 +810,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 84697694044076616, guid: 1ba4db9002b40084393924998aaa625c, type: 3}
+    - {fileID: -607000423715797669, guid: 1ba4db9002b40084393924998aaa625c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -781,8 +845,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: totipotentStemCell
       objectReference: {fileID: 0}
+    - target: {fileID: 7893710601392784741, guid: cf935214b8c21784e819e61d195a86d9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5113659539281243129, guid: cf935214b8c21784e819e61d195a86d9, type: 3}
+    - {fileID: -8122093088962636487, guid: cf935214b8c21784e819e61d195a86d9, type: 3}
+    - {fileID: 7070188081949001523, guid: cf935214b8c21784e819e61d195a86d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -860,6 +930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: totipotentStemCell
       objectReference: {fileID: 0}
+    - target: {fileID: 7893710601392784741, guid: cf935214b8c21784e819e61d195a86d9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -874,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 964975043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +984,7 @@ GameObject:
   - component: {fileID: 1106246229}
   - component: {fileID: 1106246228}
   - component: {fileID: 1106246227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1195713998}
   - component: {fileID: 1195713999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ViewPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1076,7 +1150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1198681987}
   - component: {fileID: 1198681988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cells
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,7 +1279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376076162}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1224,7 +1298,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1567893704}
   m_Father: {fileID: 510878820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1393029425 stripped
@@ -1242,7 +1317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1429027712}
   - component: {fileID: 1429027713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ViewPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,11 +1373,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1432870389}
   - component: {fileID: 1432870388}
-  - component: {fileID: 1432870390}
   - component: {fileID: 1432870391}
   - component: {fileID: 1432870392}
-  m_Layer: 5
-  m_Name: Upgrades
+  m_Layer: 6
+  m_Name: Mutations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,21 +1420,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2045417866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1432870390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432870387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db156d8663dd0da4db1ac964f35744a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lineage
-  document: {fileID: 1432870388}
-  neurosphereView: {fileID: 1432870391}
-  lineageView: {fileID: 1432870392}
 --- !u!114 &1432870391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,7 +1469,7 @@ GameObject:
   - component: {fileID: 1502169656}
   - component: {fileID: 1502169655}
   - component: {fileID: 1502169654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6246,7 +6305,7 @@ GameObject:
   - component: {fileID: 1533977337}
   - component: {fileID: 1533977336}
   - component: {fileID: 1533977338}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6304,6 +6363,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Counter
   doc: {fileID: 0}
+--- !u!1 &1567893703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567893704}
+  - component: {fileID: 1567893706}
+  - component: {fileID: 1567893705}
+  m_Layer: 7
+  m_Name: Counter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1567893704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567893703}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1376076162}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1567893705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567893703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0286e8a61faaa10478ddd5fbddcd4550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Counter
+  doc: {fileID: 1567893706}
+--- !u!114 &1567893706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567893703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 6767c73af0bd7154187af3b6cc517919, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: d74c8c2c130f7de41b91eef5d1edb963, type: 3}
+  m_SortingOrder: -1
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!1 &1586226993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6316,7 +6444,7 @@ GameObject:
   - component: {fileID: 1586226997}
   - component: {fileID: 1586226996}
   - component: {fileID: 1586226995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -6429,7 +6557,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 183
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6477,8 +6605,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ganglionMotherCell
       objectReference: {fileID: 0}
+    - target: {fileID: 6275607954566489861, guid: a4accad4a14daaa4fa286e8ce6824e3f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2404891471666177679, guid: a4accad4a14daaa4fa286e8ce6824e3f, type: 3}
+    - {fileID: -9040991422226673406, guid: a4accad4a14daaa4fa286e8ce6824e3f, type: 3}
+    - {fileID: 1578150702470987757, guid: a4accad4a14daaa4fa286e8ce6824e3f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6494,6 +6628,10 @@ PrefabInstance:
     - target: {fileID: 1937543653397530363, guid: d6c5bbd86ac35f243b9ccea8763311d8, type: 3}
       propertyPath: m_Name
       value: neuron
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937543653397530363, guid: d6c5bbd86ac35f243b9ccea8763311d8, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5540844124402577394, guid: d6c5bbd86ac35f243b9ccea8763311d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6511,7 +6649,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 84697694044076616, guid: d6c5bbd86ac35f243b9ccea8763311d8, type: 3}
+    - {fileID: -607000423715797669, guid: d6c5bbd86ac35f243b9ccea8763311d8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6525,7 +6665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916478032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Neurosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6561,7 +6701,7 @@ GameObject:
   - component: {fileID: 1963031743}
   - component: {fileID: 1963031745}
   - component: {fileID: 1963031744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6691,7 +6831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045417866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6726,7 +6866,7 @@ GameObject:
   - component: {fileID: 2070933759}
   - component: {fileID: 2070933761}
   - component: {fileID: 2070933760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11565,8 +11705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2147070451}
-  - component: {fileID: 2147070452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cells
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11594,19 +11733,6 @@ Transform:
   - {fileID: 2125892623}
   m_Father: {fileID: 486765251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2147070452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147070450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ed29b68aafca84bbfc55fa908e0342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  countsDisplay: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11614,5 +11740,6 @@ SceneRoots:
   - {fileID: 1310619852}
   - {fileID: 832575519}
   - {fileID: 168573323}
+  - {fileID: 510364086}
   - {fileID: 1916478032}
   - {fileID: 486765251}

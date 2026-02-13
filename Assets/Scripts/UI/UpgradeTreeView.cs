@@ -28,7 +28,18 @@ public sealed class UpgradeTreeView : MonoBehaviour
     public void SetDocument(UIDocument document)
     {
         doc = document;
-        initialized = false; // Force re-initialization with new document
+        initialized = false;
+    }
+
+    public event Action ViewRestored;
+
+    void OnEnable()
+    {
+        if (initialized)
+        {
+            initialized = false;
+            ViewRestored?.Invoke();
+        }
     }
 
     void EnsureInitialized()

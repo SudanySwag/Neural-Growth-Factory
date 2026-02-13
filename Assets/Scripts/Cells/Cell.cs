@@ -15,6 +15,11 @@ public abstract class Cell : MonoBehaviour, IClickable
     protected bool busy = false;
     public abstract CellType cellType { get; }
 
+    void Awake()
+    {
+        if (transform.parent != null)
+            gameObject.layer = transform.parent.gameObject.layer;
+    }
     void Start()
     {
         CellManager.Instance.RegisterCell(this);

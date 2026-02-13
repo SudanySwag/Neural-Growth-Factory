@@ -13,7 +13,14 @@ public sealed class UpgradeTreePresenter
 
         view.NodeClicked += OnNodeClicked;
         view.UpgradeClicked += OnUpgradeClicked;
+        view.ViewRestored += OnViewRestored;
 
+        Refresh();
+    }
+
+    void OnViewRestored()
+    {
+        view.BuildTree(catalog.ById.Values);
         Refresh();
     }
 

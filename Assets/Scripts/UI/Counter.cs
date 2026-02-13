@@ -10,6 +10,7 @@ public class Counter : MonoBehaviour
     VisualElement root;
     VisualElement counter;
     Label count;
+    private bool active = false;
 
     public void SetDocument(UIDocument document)
     {
@@ -22,35 +23,33 @@ public class Counter : MonoBehaviour
             count.text = CellManager.Instance.GetCellCount(CellType.RGC).ToString();
     }
 
-    private void slideDown(CellType cellType) {
+    private void SlideDown(CellType cellType) {
         if (cellType == CellType.RGC && CellManager.Instance.GetCellCount(CellType.RGC) > 100) {
             counter.style.top = new Length(0, LengthUnit.Percent);
-            CellManager.CellBirth -= slideDown;
+            CellManager.CellBirth -= SlideDown;
+            active = true;
         }
     }
-
-    public void Awake()
+    void OnEnable()
     {
         var uiDoc = doc ? doc : GetComponent<UIDocument>();
-        if (uiDoc == null)
-        {
-            Debug.LogError("Counter: No UIDocument found! Please assign a UIDocument in the Inspector or add a UIDocument component.");
-            return;
-        }
+        if (uiDoc == null) return;
 
         root = uiDoc.rootVisualElement;
-        if (root == null)
-        {
-            Debug.LogError("Counter: UIDocument root is null!");
-            return;
-        }
+        if (root == null) return;
 
         counter = root.Q<VisualElement>("Counter");
         count = root.Q<Label>("Count");
 
-        counter.style.top = new Length(-150, LengthUnit.Percent);
+        if (counter != null && !active) {
+            counter.style.top = new Length(-150, LengthUnit.Percent);
+            CellManager.CellBirth += SlideDown;
+        }
+    }
 
-        CellManager.CellBirth += slideDown;
+    void OnDisable()
+    {
+        CellManager.CellBirth -= SlideDown;
     }
 
     public void Update()

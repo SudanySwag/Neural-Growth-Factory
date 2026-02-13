@@ -60,7 +60,6 @@
         "Builds/": true,
         "Packages/": true,
         "UIElementsSchema/": true,
-        "Neural Growth Factory.sln": true,
         "Assets/_Recovery/": true,
         "Assets/Editor/": true,
         "Assets/Resources/": true,
