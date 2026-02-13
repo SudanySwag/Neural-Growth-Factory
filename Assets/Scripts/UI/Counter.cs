@@ -24,7 +24,7 @@ public class Counter : MonoBehaviour
     }
 
     private void SlideDown(CellType cellType) {
-        if (cellType == CellType.RGC && CellManager.Instance.GetCellCount(CellType.RGC) > 100) {
+        if (cellType == CellType.RGC && CellManager.Instance.GetCellCount(CellType.RGC) >= 100) {
             counter.style.top = new Length(0, LengthUnit.Percent);
             CellManager.CellBirth -= SlideDown;
             active = true;

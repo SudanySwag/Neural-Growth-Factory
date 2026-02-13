@@ -148,7 +148,8 @@ public abstract class Cell : MonoBehaviour, IClickable
 
     public void Apoptosis()
     {
-        if (busy) return;
+        CellManager.Instance.UnregisterCell(this);
+        if (busy) {}
         StartCoroutine(ApoptosisRoutine());
     }
 
