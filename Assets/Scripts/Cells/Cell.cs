@@ -170,7 +170,7 @@ public abstract class Cell : MonoBehaviour, IClickable
         Destroy(gameObject);
     }
 
-    void onDestroy()
+    void OnDestroy()
     {
         CellManager.Instance.UnregisterCell(this);
     }

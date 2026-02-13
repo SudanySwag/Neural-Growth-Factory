@@ -92,7 +92,7 @@ public sealed class UpgradeTreePresenter
         foreach (var u in catalog.ById.Values)
         {
             view.SetUnlocked(u.Id, catalog.IsUnlocked(u.Id));
-            view.SetUpgradeLevel(u.Id, u.Level, u.maxLevel, ArePrereqsMet(u));
+            view.SetUpgradeLevel(u.Id, u.Level, u.maxLevel, ArePrereqsMet(u), CanPurchase(u));
         }
     }
 }

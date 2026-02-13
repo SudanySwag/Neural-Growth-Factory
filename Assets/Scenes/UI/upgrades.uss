@@ -106,6 +106,12 @@
     border-color: rgba(50, 40, 180, 0.7);
 }
 
+/* Enough money to purchase */
+.node.is-affordable {
+    background-color: rgba(10, 115, 134, 0.53);
+    border-color: rgba(95, 194, 255, 0.7);
+}
+
 /* Partially upgraded (level > 0 but < maxLevel) */
 .node.is-partial {
     background-color: rgba(30, 100, 60, 0.7);
@@ -123,6 +129,13 @@
     border-width: 4px;
     border-color: rgba(100, 150, 255, 1);
 }
+
+/* Enough money to purchase */
+.node.is-affordable.is {
+    background-color: rgba(8, 84, 98, 0.53);
+    border-color: rgba(68, 153, 206, 0.7);
+}
+
 
 .node.is-partial.is-selected {
     background-color: rgba(40, 130, 80, 0.85);

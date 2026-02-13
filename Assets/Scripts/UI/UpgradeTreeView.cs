@@ -5,6 +5,7 @@ using System;
 public sealed class UpgradeTreeView : MonoBehaviour
 {
     [SerializeField] UIDocument doc;
+    [SerializeField] string panelName = "LineagePanel";
     public event Action<string> NodeClicked;
     public event Action<string> UpgradeClicked;
 
@@ -48,11 +49,12 @@ public sealed class UpgradeTreeView : MonoBehaviour
             return;
         }
 
-        lineageContainer = root.Q<VisualElement>("Lineage");
+        var panel = root.Q<VisualElement>(panelName);
+        lineageContainer = panel?.Q<VisualElement>("Lineage");
 
         if (lineageContainer == null)
         {
-            Debug.LogError("UpgradeTreeView: Could not find 'Lineage' element in UIDocument. Check that the UXML structure is correct.");
+            Debug.LogError($"UpgradeTreeView: Could not find 'Lineage' inside '{panelName}'. Check that the UXML structure is correct.");
             Debug.Log($"Root element: {root.name}, children: {root.childCount}");
 
             // Debug: print all elements in hierarchy
@@ -256,7 +258,7 @@ public sealed class UpgradeTreeView : MonoBehaviour
             b.EnableInClassList("is-unlocked", unlocked);
     }
 
-    public void SetUpgradeLevel(string id, short level, short maxLevel, bool canPurchase)
+    public void SetUpgradeLevel(string id, short level, short maxLevel, bool prereqs, bool canPurchase)
     {
         EnsureInitialized();
         if (!nodeById.TryGetValue(id, out var b)) return;
@@ -264,6 +266,7 @@ public sealed class UpgradeTreeView : MonoBehaviour
         // Clear all state classes
         b.RemoveFromClassList("is-locked");
         b.RemoveFromClassList("is-available");
+        b.RemoveFromClassList("is-affordable");
         b.RemoveFromClassList("is-partial");
         b.RemoveFromClassList("is-maxed");
 
@@ -278,6 +281,11 @@ public sealed class UpgradeTreeView : MonoBehaviour
             b.AddToClassList("is-partial");
         }
         else if (canPurchase)
+        {
+            // Affordable
+            b.AddToClassList("is-affordable");
+        }
+        else if (prereqs)
         {
             // Available to purchase (prerequisites met)
             b.AddToClassList("is-available");

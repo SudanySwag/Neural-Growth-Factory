@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// List of upgrades
 /// </summary>
-public static class UpgradeData
+public static class MutationData
 {
     public static UpgradeCatalog CreateCatalog()
     {

@@ -1,5 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Evolution" src="project://database/Assets/Scenes/UI/Lineage.uxml?fileID=9197481963319205126&amp;guid=4bb43806d9bc5a84d94b1b057f9b57c6&amp;type=3#Lineage" />
+    <ui:Template name="LineageTree" src="project://database/Assets/Scenes/UI/Lineage.uxml?fileID=9197481963319205126&amp;guid=4bb43806d9bc5a84d94b1b057f9b57c6&amp;type=3#Lineage" />
     <Style src="project://database/Assets/Scenes/UI/upgrades.uss?fileID=7433441132597879392&amp;guid=f0aa6e45b1c19d641aeb6ff8ee0a7f9e&amp;type=3#upgrades" />
     <ui:RadioButtonGroup name="Upgrades" value="0" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 100%;">
         <ui:RadioButton name="Off" style="width: 54%;" />
@@ -7,6 +8,12 @@
             <ui:RadioButton name="LineageButton" class="upgradeButton" />
             <ui:VisualElement name="LineagePanel" class="upgradePanel">
                 <ui:Instance template="Evolution" style="height: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="LineageTreeHolder" class="buttonPanel" style="display: none;">
+            <ui:RadioButton name="LineageTreeButton" class="upgradeButton" />
+            <ui:VisualElement name="LineageTreePanel" class="upgradePanel">
+                <ui:Instance template="LineageTree" style="height: 100%;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:RadioButtonGroup>
