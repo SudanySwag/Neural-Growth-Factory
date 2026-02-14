@@ -59,6 +59,7 @@ public sealed class UpgradeTreePresenter
             return false;
 
         // Check if player has sufficient RGC cells
+        if (CellManager.Instance == null) return false;
         int cost = upgrade.Cost(upgrade.Level);
         int currentCells = CellManager.Instance.GetCellCount(CellType.RGC);
         if (currentCells < cost)

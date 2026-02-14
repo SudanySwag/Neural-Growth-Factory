@@ -21,6 +21,8 @@ public class Upgrades : MonoBehaviour
     private UpgradeCatalog lineageCatalog;
     private VisualElement lineageTreeHolder;
 
+    private bool unlocked = false;
+
     void Awake () {
         // Singleton pattern
         if (Instance == null)
@@ -47,28 +49,17 @@ public class Upgrades : MonoBehaviour
         {
             neurosphereView.SetDocument(document);
             neurospherePresenter = new UpgradeTreePresenter(neurosphereView, neurosphereCatalog);
+            neurosphereView.ViewRestored += () => RefreshHolders(root);
         }
 
         if (lineageView != null)
         {
             lineageView.SetDocument(document);
             lineagePresenter = new UpgradeTreePresenter(lineageView, lineageCatalog);
+            lineageView.ViewRestored += () => RefreshHolders(root);
         }
 
-        // Cache holder references
-        lineageHolder = root.Q<VisualElement>(LINEAGE_HOLDER_NAME);
-        if (lineageHolder != null)
-        {
-            lineageHolder.style.opacity = 0f;
-            lineageHolder.SetEnabled(false);
-        }
-
-        lineageTreeHolder = root.Q<VisualElement>(LINEAGE_TREE_HOLDER_NAME);
-        if (lineageTreeHolder != null)
-        {
-            lineageTreeHolder.style.opacity = 0f;
-            lineageTreeHolder.SetEnabled(false);
-        }
+        RefreshHolders(root);
     }
 
     public bool IsUpgradeUnlocked(string id)
@@ -89,22 +80,33 @@ public class Upgrades : MonoBehaviour
         return 0;
     }
 
+    private void RefreshHolders(VisualElement root)
+    {
+        lineageHolder = root.Q<VisualElement>(LINEAGE_HOLDER_NAME);
+        lineageTreeHolder = root.Q<VisualElement>(LINEAGE_TREE_HOLDER_NAME);
+        ApplyHolderState();
+    }
+
+    private void ApplyHolderState()
+    {
+        if (lineageHolder != null)
+        {
+            lineageHolder.style.opacity = unlocked ? 1f : 0f;
+            lineageHolder.SetEnabled(unlocked);
+        }
+        if (lineageTreeHolder != null)
+        {
+            lineageTreeHolder.SetEnabled(unlocked);
+        }
+    }
+
     private void HandleCellBirth(CellType cellType)
     {
-        // Unlock upgrade holders (make them interactive) when the player has enough RGCs
-        // SidebarController handles which one is actually visible
         if (cellType == CellType.RGC &&
             CellManager.Instance.GetCellCount(CellType.RGC) >= LINEAGE_UNLOCK_THRESHOLD)
         {
-            if (lineageHolder != null)
-            {
-                lineageHolder.style.opacity = 1f;
-                lineageHolder.SetEnabled(true);
-            }
-            if (lineageTreeHolder != null)
-            {
-                lineageTreeHolder.SetEnabled(true);
-            }
+            unlocked = true;
+            ApplyHolderState();
             CellManager.CellBirth -= HandleCellBirth;
         }
     }

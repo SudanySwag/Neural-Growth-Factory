@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(SphereCollider))]
 public abstract class Cell : MonoBehaviour, IClickable
 {
     [Header("Division Timing")]
@@ -18,7 +19,12 @@ public abstract class Cell : MonoBehaviour, IClickable
     void Awake()
     {
         if (transform.parent != null)
+        {
             gameObject.layer = transform.parent.gameObject.layer;
+            var col = GetComponent<SphereCollider>();
+            if (col != null)
+                col.includeLayers = 1 << gameObject.layer;
+        }
     }
     void Start()
     {

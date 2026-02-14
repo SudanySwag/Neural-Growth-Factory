@@ -44,7 +44,7 @@ public static class MutationData
                 Description = "Maximizes GMC potential. Unlocks the most powerful neural growth capabilities.",
                 Level = 0,
                 maxLevel = 1,
-                Cost = level => 1000,
+                Cost = level => 500,
                 Prereqs = new[] {"gmc-enhanced"},
                 Position = new Vector2(50, 75)
             },

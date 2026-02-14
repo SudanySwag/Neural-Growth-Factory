@@ -6,7 +6,10 @@ public class SidebarController : MonoBehaviour
     [SerializeField] UIDocument sidebarDocument;
     [SerializeField] GameObject[] environments;
 
+    const int SIDEBAR_UNLOCK_THRESHOLD = 100;
+
     GameObject[] views;
+    VisualElement sidebarRoot;
 
     void Start()
     {
@@ -21,12 +24,32 @@ public class SidebarController : MonoBehaviour
             }
         }
 
-        var sidebarRoot = sidebarDocument.rootVisualElement;
+        sidebarRoot = sidebarDocument.rootVisualElement;
         var sidebarGroup = sidebarRoot.Q<RadioButtonGroup>("RadioButtonGroup");
 
         sidebarGroup.RegisterValueChangedCallback(OnSidebarChanged);
 
+        // Hide sidebar until threshold is reached
+        sidebarRoot.style.display = DisplayStyle.None;
+        CellManager.CellBirth += CheckUnlock;
+
         SetScreen(0);
+    }
+
+    void OnDisable()
+    {
+        CellManager.CellBirth -= CheckUnlock;
+    }
+
+    void CheckUnlock(CellType cellType)
+    {
+        if (cellType == CellType.RGC &&
+            CellManager.Instance.GetCellCount(CellType.RGC) >= SIDEBAR_UNLOCK_THRESHOLD)
+        {
+            sidebarRoot.style.display = DisplayStyle.Flex;
+            sidebarRoot.Q<RadioButtonGroup>("RadioButtonGroup").value = 0;
+            CellManager.CellBirth -= CheckUnlock;
+        }
     }
 
     void OnSidebarChanged(ChangeEvent<int> evt)
