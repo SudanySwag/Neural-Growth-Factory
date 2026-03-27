@@ -1,0 +1,46 @@
+.cutscene-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 1);
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+}
+
+.cutscene-overlay.fade-out {
+    opacity: 0;
+}
+
+.custom-cursor {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-in;
+}
+
+.custom-cursor.visible {
+    opacity: 1;
+}
+
+.caption {
+    position: absolute;
+    font-size: 24px;
+    color: rgba(200, 200, 200, 0.9);
+    opacity: 0;
+    -unity-text-align: middle-center;
+    transition-property: opacity;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in;
+}
+
+.caption.visible {
+    opacity: 1;
+}
