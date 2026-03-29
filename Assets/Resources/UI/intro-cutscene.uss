@@ -1,0 +1,19 @@
+.cutscene-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 1);
+    picking-mode: ignore;
+}
+
+.caption {
+    position: absolute;
+    font-size: 24px;
+    color: rgba(200, 200, 200, 0.9);
+    opacity: 0;
+    -unity-font-style: italic;
+    -unity-text-align: middle-center;
+    picking-mode: ignore;
+}

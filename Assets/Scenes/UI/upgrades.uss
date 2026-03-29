@@ -1,0 +1,212 @@
+:root {
+}
+
+#Upgrades > .unity-base-field__input > #contentContainer {
+    height: 100%;
+}
+
+.buttonPanel {
+    flex-direction: row;
+    width: 53%;
+    align-self: flex-end;
+    transition-property: opacity;
+    transition-timing-function: ease-out-sine;
+    transition-duration: 5s;
+    flex-grow: 1;
+}
+
+.upgradeButton {
+    align-self: center;
+    width: 12%;
+    height: 12%;
+    margin-left: 88%;
+    transition-property: margin-left, opacity;
+    transition-duration: 0.3s, 0s;
+    transition-timing-function: ease-in-out-sine, ease;
+}
+
+.upgradeButton:selected {
+    margin-left: 0%;
+}
+
+.upgradePanel {
+    background-color: rgba(0, 0, 0, 0.78);
+    flex-grow: 1;
+}
+
+#Upgrades > #Off {
+    translate: 0% 0;
+    position: absolute;
+    height: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    width: 44%;
+    opacity: 0;
+}
+
+#Upgrades > #Off:selected {
+    translate: -100% 0;
+}
+
+#Upgrades > .buttonPanel > .upgradeButton > .unity-radio-button__input {
+    justify-content: center;
+    scale: 5 5;
+}
+
+#Upgrades > .buttonPanel > .upgradeButton > .unity-radio-button__input > .unity-radio-button__checkmark-background {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    justify-content: center;
+}
+
+#Upgrades > .buttonPanel > .upgradeButton > .unity-radio-button__input > .unity-radio-button__checkmark-background > #unity-checkmark {
+}
+
+.lineage-container {
+    overflow: hidden;
+}
+
+.nodes-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.node {
+    position: absolute;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    background-color: rgba(60, 60, 80, 0.6);
+    width: 200px;
+    height: 200px;
+    border-width: 3px;
+    border-color: rgba(80, 80, 100, 0.8);
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+/* Locked state - prerequisites not met */
+.node.is-locked {
+    background-color: rgba(40, 40, 50, 0.5);
+    border-color: rgba(60, 60, 70, 0.6);
+    color: rgba(255, 255, 255, 1);
+    opacity: 0.6;
+}
+
+/* Unlocked but not upgraded yet (level 0 but can purchase) */
+.node.is-available {
+    background-color: rgba(17, 10, 134, 0.53);
+    border-color: rgba(50, 40, 180, 0.7);
+}
+
+/* Enough money to purchase */
+.node.is-affordable {
+    background-color: rgba(10, 115, 134, 0.53);
+    border-color: rgba(95, 194, 255, 0.7);
+}
+
+/* Partially upgraded (level > 0 but < maxLevel) */
+.node.is-partial {
+    background-color: rgba(30, 100, 60, 0.7);
+    border-color: rgba(60, 180, 100, 0.8);
+}
+
+/* Fully upgraded (level == maxLevel) */
+.node.is-maxed {
+    background-color: rgba(180, 140, 20, 0.7);
+    border-color: rgba(255, 200, 50, 0.9);
+}
+
+.node.is-selected {
+    background-color: rgba(50, 30, 200, 0.8);
+    border-width: 4px;
+    border-color: rgba(100, 150, 255, 1);
+}
+
+/* Enough money to purchase */
+.node.is-affordable.is {
+    background-color: rgba(8, 84, 98, 0.53);
+    border-color: rgba(68, 153, 206, 0.7);
+}
+
+
+.node.is-partial.is-selected {
+    background-color: rgba(40, 130, 80, 0.85);
+    border-color: rgba(100, 255, 150, 1);
+}
+
+.node.is-maxed.is-selected {
+    background-color: rgba(200, 160, 30, 0.85);
+    border-color: rgba(255, 220, 100, 1);
+}
+
+.node-detail-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(20, 15, 40, 0.92);
+    padding: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-top-width: 2px;
+    border-top-color: rgba(100, 150, 255, 0.6);
+    display: none;
+}
+
+.node-detail-panel.visible {
+    display: flex;
+}
+
+.node-detail-name {
+    font-size: 24px;
+    color: rgba(200, 220, 255, 1);
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+}
+
+.node-detail-description {
+    font-size: 14px;
+    color: rgba(180, 180, 200, 1);
+    white-space: normal;
+    margin-bottom: 16px;
+}
+
+.node-detail-level {
+    font-size: 16px;
+    color: rgba(160, 180, 220, 1);
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.node-detail-cost {
+    font-size: 14px;
+    color: rgba(255, 200, 80, 1);
+    margin-bottom: 12px;
+}
+
+.upgrade-button {
+    align-self: flex-start;
+    padding: 10px 24px;
+    background-color: rgba(50, 120, 200, 0.9);
+    border-radius: 6px;
+    border-width: 0;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+.upgrade-button:hover {
+    background-color: rgba(70, 140, 220, 1);
+}
+
+.upgrade-button:active {
+    background-color: rgba(40, 100, 180, 1);
+}

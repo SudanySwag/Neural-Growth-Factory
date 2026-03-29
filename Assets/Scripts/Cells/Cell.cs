@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class Cell : MonoBehaviour, IClickable
+[RequireComponent(typeof(SphereCollider))]
+public abstract class Cell : MonoBehaviour, IClickable
 {
     [Header("Division Timing")]
     [SerializeField] private float prepTime = 0.25f;
@@ -12,18 +13,36 @@ public class Cell : MonoBehaviour, IClickable
     [SerializeField] private float squashAmount = 0.20f;     // 0.2 = 20%
     [SerializeField] private float separationDistance = 0.6f;
 
-    private bool busy;
-    [SerializeField] protected CellType cellType;
+    protected bool busy = false;
+    public abstract CellType cellType { get; }
 
+    void Awake()
+    {
+        if (transform.parent != null)
+        {
+            gameObject.layer = transform.parent.gameObject.layer;
+            var col = GetComponent<SphereCollider>();
+            if (col != null)
+                col.includeLayers = 1 << gameObject.layer;
+        }
+    }
     void Start()
+    {
+        CellManager.Instance.RegisterCell(this);
+    }
+
+    protected void freeCell()
     {
         busy = false;
     }
 
-    virtual public void Click()
+    public void Click()
     {
         print($"{this.GetType().FullName} clicked");
+        OnClick();
     }
+
+    virtual protected void OnClick() {}
 
     public void Differentiate(GameObject newForm)
     {
@@ -52,7 +71,7 @@ public class Cell : MonoBehaviour, IClickable
         daughter.transform.localScale = squashed; // match squashed look initially
         yield return TweenScale(squashed, targetScale, settleTime, daughter.transform);
         busy = false;
-        Apoptosis();
+        Destroy(gameObject);
     }
 
     public void Divide(GameObject child)
@@ -130,9 +149,41 @@ public class Cell : MonoBehaviour, IClickable
         return x * x * (3f - 2f * x); // smoothstep
     }
 
-    private void Apoptosis()
+    [Header("Death Animation")]
+    [SerializeField] private float deathDuration = 0.8f;
+
+    public void Apoptosis()
     {
-        CellManager.Instance.UnregisterCell(cellType);
+        CellManager.Instance.UnregisterCell(this);
+        if (busy) {}
+        StartCoroutine(ApoptosisRoutine());
+    }
+
+    private IEnumerator ApoptosisRoutine()
+    {
+        busy = true;
+        GetComponent<SphereCollider>().enabled = false;
+
+        Vector3 startScale = transform.localScale;
+        Renderer rend = GetComponent<Renderer>();
+        Color startColor = rend.material.color;
+        Color endColor = new Color(0.4f, 0.4f, 0.4f, 0f);
+
+        float t = 0f;
+        while (t < .1f)
+        {
+            t += Time.deltaTime / deathDuration;
+            float s = Smooth01(t);
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, s);
+            rend.material.color = Color.Lerp(startColor, endColor, s);
+            yield return null;
+        }
+
         Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        CellManager.Instance.UnregisterCell(this);
     }
 }

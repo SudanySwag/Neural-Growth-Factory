@@ -157,6 +157,3 @@ MonoBehaviour:
   settleTime: 0.15
   squashAmount: 0.2
   separationDistance: 0.6
-  radialGlialCellPrefab: {fileID: 4916272863054816311, guid: 8d2f895ce4707934b85d2a4c3f314549, type: 3}
-  spawnOffset: {x: 0, y: 0, z: 0}
-  spawnOnce: 1

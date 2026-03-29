@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scenes/UI/counter.uss?fileID=7433441132597879392&amp;guid=eb11094b906281a48a52d850c230c53b&amp;type=3#counter" />
+    <ui:VisualElement name="Counter" class="Counter" style="width: 300px; align-self: center; height: 100px; margin-top: 10px;">
+        <ui:Label text="0" name="Count" class="Count" style="align-self: center;" />
+    </ui:VisualElement>
+</ui:UXML>

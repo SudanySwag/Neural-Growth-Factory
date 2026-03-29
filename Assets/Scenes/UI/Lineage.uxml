@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scenes/UI/upgrades.uss?fileID=7433441132597879392&amp;guid=f0aa6e45b1c19d641aeb6ff8ee0a7f9e&amp;type=3#upgrades" />
+    <ui:VisualElement name="Lineage" class="lineage-container" style="flex-grow: 1; top: 0; left: 0;">
+        <ui:VisualElement name="NodesContainer" class="nodes-container" />
+        <ui:VisualElement name="NodeDetailPanel" class="node-detail-panel">
+            <ui:Label name="NodeName" class="node-detail-name" />
+            <ui:Label name="NodeDescription" class="node-detail-description" />
+            <ui:Label name="NodeLevel" class="node-detail-level" />
+            <ui:Label name="NodeCost" class="node-detail-cost" />
+            <ui:Button name="UpgradeButton" text="Upgrade" class="upgrade-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

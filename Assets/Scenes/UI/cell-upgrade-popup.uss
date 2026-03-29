@@ -1,0 +1,115 @@
+.cell-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.cell-popup.visible {
+    display: flex;
+}
+
+.popup-panel {
+    position: absolute;
+    width: 280px;
+    max-height: 400px;
+    background-color: rgba(20, 15, 40, 0.95);
+    border-radius: 12px;
+    border-width: 2px;
+    border-color: rgba(100, 150, 255, 0.6);
+    padding: 12px;
+}
+
+.popup-title {
+    font-size: 20px;
+    color: rgba(200, 220, 255, 1);
+    -unity-font-style: bold;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(100, 150, 255, 0.3);
+}
+
+.upgrade-list {
+    flex-grow: 1;
+}
+
+.upgrade-row {
+    padding: 8px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    background-color: rgba(40, 35, 60, 0.8);
+    border-width: 1px;
+    border-color: rgba(80, 80, 120, 0.5);
+}
+
+.upgrade-row.is-maxed {
+    border-color: rgba(255, 200, 50, 0.6);
+    background-color: rgba(60, 50, 20, 0.6);
+}
+
+.upgrade-row.is-affordable {
+    border-color: rgba(95, 194, 255, 0.6);
+    background-color: rgba(20, 40, 60, 0.6);
+}
+
+.upgrade-row-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.upgrade-row-title {
+    font-size: 15px;
+    color: rgba(220, 220, 240, 1);
+    -unity-font-style: bold;
+}
+
+.upgrade-row-level {
+    font-size: 13px;
+    color: rgba(160, 180, 220, 1);
+}
+
+.upgrade-row-desc {
+    font-size: 12px;
+    color: rgba(160, 160, 180, 1);
+    white-space: normal;
+    margin-bottom: 6px;
+}
+
+.upgrade-row-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upgrade-row-cost {
+    font-size: 13px;
+    color: rgba(255, 200, 80, 1);
+}
+
+.upgrade-row-button {
+    padding: 4px 14px;
+    background-color: rgba(50, 120, 200, 0.9);
+    border-radius: 4px;
+    border-width: 0;
+    color: rgba(255, 255, 255, 1);
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+
+.upgrade-row-button:hover {
+    background-color: rgba(70, 140, 220, 1);
+}
+
+.upgrade-row-button:active {
+    background-color: rgba(40, 100, 180, 1);
+}
+
+.upgrade-row-button:disabled {
+    background-color: rgba(60, 60, 80, 0.5);
+    color: rgba(150, 150, 150, 0.6);
+}

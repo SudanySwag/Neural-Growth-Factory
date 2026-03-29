@@ -3,8 +3,8 @@
     <ui:VisualElement name="sidebar" style="width: 12%; background-color: rgba(0, 0, 0, 0); height: 100%;">
         <ui:RadioButtonGroup name="RadioButtonGroup" style="height: 100%;">
             <ui:RadioButton name="Neurosphere" class="sidebarButton" />
-            <ui:RadioButton name="Specimens" class="sidebarButton" style="transition-delay: 0.1s;" />
-            <ui:RadioButton name="Motors" class="sidebarButton" style="transition-delay: 0.2s; transition-timing-function: ease-in-out-circ;" />
+            <ui:RadioButton name="Lineage" class="sidebarButton" style="transition-delay: 0.1s;" />
+            <ui:RadioButton name="Motors" class="sidebarButton" style="transition-delay: 0.2s;" />
             <ui:RadioButton name="Circuitry" class="sidebarButton" style="transition-delay: 0.3s;" />
             <ui:RadioButton name="Synapses" class="sidebarButton" style="transition-delay: 0.4s;" />
             <ui:RadioButton name="Stats" class="sidebarButton" style="transition-delay: 0.5s;" />
