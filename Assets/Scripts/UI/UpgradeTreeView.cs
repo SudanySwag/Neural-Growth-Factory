@@ -97,7 +97,6 @@ public sealed class UpgradeTreeView : MonoBehaviour
             SetupPanning();
 
             initialized = true;
-            Debug.Log("UpgradeTreeView: Successfully initialized and found Lineage element");
         }
     }
 

@@ -1,7 +1,6 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements">
-    <Style src="project://database/Assets/Resources/UI/intro-cutscene.uss" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/intro-cutscene.uss?fileID=7433441132597879392&amp;guid=d0965116c7fb09243aca8b7ba883b433&amp;type=3#intro-cutscene" />
     <ui:VisualElement name="CutsceneOverlay" class="cutscene-overlay">
-        <ui:VisualElement name="CustomCursor" class="custom-cursor" />
         <ui:Label name="Caption" text="Look into the void" class="caption" />
     </ui:VisualElement>
 </ui:UXML>

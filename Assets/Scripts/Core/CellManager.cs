@@ -89,6 +89,10 @@ public class CellManager : MonoBehaviour
             CellBirth?.Invoke(cellInstance.cellType);
             UpdateDisplayCount(cellInstance.cellType);
         }
+        else
+        {
+            Debug.LogError($"CellManager: Attempted to register cell of type {cellInstance.cellType} which is not defined in the manager.");
+        }
     }
 
     public void UnregisterCell(Cell cellInstance)
@@ -97,6 +101,10 @@ public class CellManager : MonoBehaviour
         {
             cellInfo.cellList.Remove(cellInstance);
             UpdateDisplayCount(cellInstance.cellType);
+        }
+        else
+        {
+            Debug.LogError($"CellManager: Attempted to unregister cell of type {cellInstance.cellType} which is not defined in the manager.");
         }
     }
 
@@ -120,24 +128,30 @@ public class CellManager : MonoBehaviour
 
     public void KillCells(CellType ct, int count)
     {
-        if (!cells.TryGetValue(ct, out CellInfo cellInfo) || cellInfo.cellList.Count == 0)
+        cells.TryGetValue(ct, out CellInfo cellInfo);
+        
+        if (cellInfo.cellList.Count < count)
         {
-            Debug.LogWarning($"CellManager: No cells of type {ct} available to kill.");
+            Debug.LogWarning($"CellManager: Attempted to kill {count} cells of type {ct}, but only {cellInfo.cellList.Count} are available.");
             return;
         }
         
-        int cellsToKill = Mathf.Min(count, cellInfo.cellList.Count);
-        
-        if (cellsToKill < count)
+        int n = cellInfo.cellList.Count;
+        var indices = new int[n];
+        for (int i = 0; i < n; i++) indices[i] = i;
+        for (int i = 0; i < count; i++)
         {
-            Debug.LogWarning($"CellManager: Attempted to kill {count} cells of type {ct}, but only {cellsToKill} are available.");
+            int j = Random.Range(i, n);
+            (indices[i], indices[j]) = (indices[j], indices[i]);
         }
-        
-        for (int i = 0; i < cellsToKill; i++)
+
+        // Sort the picked indices descending and remove back-to-front
+        System.Array.Sort(indices, 0, count);
+        System.Array.Reverse(indices, 0, count);
+        for (int i = 0; i < count; i++)
         {
-            int index = Random.Range(0, cellInfo.cellList.Count);
-            Cell cell = cellInfo.cellList[index];
-            cellInfo.cellList.RemoveAt(index);
+            Cell cell = cellInfo.cellList[indices[i]];
+            cellInfo.cellList.RemoveAt(indices[i]);
             cell.Apoptosis();
         }
     }

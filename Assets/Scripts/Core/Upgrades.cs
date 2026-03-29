@@ -12,7 +12,6 @@ public class Upgrades : MonoBehaviour
     public UIDocument document;
     [SerializeField] UpgradeTreeView neurosphereView;
     [SerializeField] UpgradeTreeView lineageView;
-
     private UpgradeTreePresenter neurospherePresenter;
     private UpgradeCatalog neurosphereCatalog;
     private VisualElement lineageHolder;

@@ -6,7 +6,7 @@
     flex-grow: 1;
     transition-property: translate;
     transition-duration: 0.5s;
-    transition-timing-function: ease-in-out-circ;
+    transition-timing-function: ease-out-circ;
     translate: -100% 0%;
 }
 

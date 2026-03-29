@@ -6,7 +6,7 @@ public class SidebarController : MonoBehaviour
     [SerializeField] UIDocument sidebarDocument;
     [SerializeField] GameObject[] environments;
 
-    const int SIDEBAR_UNLOCK_THRESHOLD = 100;
+    const int SIDEBAR_UNLOCK_THRESHOLD = 5;
 
     GameObject[] views;
     VisualElement sidebarRoot;
@@ -61,11 +61,10 @@ public class SidebarController : MonoBehaviour
     void SetScreen(int index)
     {
         if (index < 0 || index >= environments.Length) return;
-        // Show only the active environment's view
-        for (int i = 0; i < views.Length; i++)
+        for (int i = 0; i < environments.Length; i++)
         {
-            if (views[i] != null)
-                views[i].SetActive(i == index);
+            if (environments[i] != null)
+                environments[i].SetActive(i == index);
         }
     }
 }

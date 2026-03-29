@@ -12,9 +12,13 @@ public class CameraHandler : MonoBehaviour
 
     [Header("Zoom")]
     [SerializeField] private float zoomSpeed = 2.0f;
+    [SerializeField] private float zoomSmoothSpeed = 10f;
     private float cellMultiplier = 1.0f;
     [SerializeField] private float minOrthoSize = 0.5f;
     [SerializeField] private float maxOrthoSize = 50f;
+    private float targetOrthoSize;
+
+    public static event System.Action ClickedNothing;
 
     private Vector2 lastMousePos;
     private bool dragging;
@@ -28,6 +32,7 @@ public class CameraHandler : MonoBehaviour
     {
         if (!cam) cam = GetComponentInChildren<Camera>();
         if (cam && !cam.orthographic) cam.orthographic = true;
+        if (cam) targetOrthoSize = cam.orthographicSize;
     }
 
     void Update()
@@ -35,12 +40,28 @@ public class CameraHandler : MonoBehaviour
         Mouse mouse = Mouse.current;
         if (mouse == null) return;
 
+        Ray ray = cam.ScreenPointToRay(mouse.position.ReadValue());
+        bool hovering = Physics.Raycast(ray, out RaycastHit hit, 1000f, clickableLayers)
+                        && hit.collider.GetComponentInParent<IClickable>() != null;
+
+        var cursor = CursorDefinition.Current;
+        if (cursor != null)
+        {
+            if (hovering)
+                cursor.SetActive();
+            else
+                cursor.SetDefault();
+        }
+
         if (mouse.leftButton.wasReleasedThisFrame && !dragging) {
-            Ray ray = cam.ScreenPointToRay(mouse.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, clickableLayers))
+            if (hovering)
             {
                 var clickable = hit.collider.GetComponentInParent<IClickable>();
                 clickable?.Click();
+            }
+            else
+            {
+                ClickedNothing?.Invoke();
             }
         }
 
@@ -91,16 +112,17 @@ public class CameraHandler : MonoBehaviour
     }
     void HandleZoom(Mouse mouse)
     {
-        float scrollY = mouse.scroll.ReadValue().y; // typically +/- 120 per notch
-        if (scrollY == 0f) return;
+        float scrollY = mouse.scroll.ReadValue().y;
+        if (scrollY != 0f)
+        {
+            float scroll = scrollY / 20f;
+            targetOrthoSize = Mathf.Clamp(
+                targetOrthoSize - scroll * zoomSpeed * cellMultiplier,
+                minOrthoSize,
+                maxOrthoSize
+            );
+        }
 
-        // Normalize the wheel a bit (feel free to tweak divisor)
-        float scroll = scrollY / 20f;
-
-        cam.orthographicSize = Mathf.Clamp(
-            cam.orthographicSize - scroll * zoomSpeed * cellMultiplier,
-            minOrthoSize,
-            maxOrthoSize
-        );
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetOrthoSize, zoomSmoothSpeed * Time.deltaTime);
     }
 }

@@ -170,7 +170,7 @@ public abstract class Cell : MonoBehaviour, IClickable
         Color endColor = new Color(0.4f, 0.4f, 0.4f, 0f);
 
         float t = 0f;
-        while (t < 1f)
+        while (t < .1f)
         {
             t += Time.deltaTime / deathDuration;
             float s = Smooth01(t);
